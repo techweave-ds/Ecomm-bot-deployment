@@ -6,15 +6,21 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { documentRelationships, topicRelationships, chunkRelationships } from "@/lib/data"
-import { Share2, GitBranch, List, Network, ArrowRight, FileText, Hash, Tag } from "lucide-react"
+import { Share2, List, Network, ArrowRight, FileText, Hash, Tag } from "lucide-react"
 
 type ViewMode = "graph" | "list"
 type RelationType = "documents" | "topics" | "chunks"
 
-const relationSources: Record<RelationType, any[]> = {
-  documents: documentRelationships as any[],
-  topics: topicRelationships as any[],
-  chunks: chunkRelationships as any[],
+interface Relationship {
+  source: string
+  targets: string[]
+  strength: string
+}
+
+const relationSources: Record<RelationType, Relationship[]> = {
+  documents: documentRelationships,
+  topics: topicRelationships,
+  chunks: chunkRelationships,
 }
 
 const typeIcons: Record<RelationType, typeof FileText> = {

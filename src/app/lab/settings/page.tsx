@@ -1,21 +1,14 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
-  Settings,
   Database,
   Brain,
-  Key,
-  Bell,
-  Users,
-  Globe,
   Shield,
   Sliders,
   Save,
   RefreshCw,
-  CheckCircle,
 } from "lucide-react"
 
 const settingsSections = [

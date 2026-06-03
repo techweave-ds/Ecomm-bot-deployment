@@ -1,14 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import { KnowledgeHealthCard } from "@/components/lab/knowledge-health"
 import { knowledgeGapsEngine, knowledgeBases } from "@/lib/data"
 import {
-  BarChart3,
   TrendingUp,
   FileText,
   Target,
@@ -19,18 +17,27 @@ import {
   MessageSquare,
   Zap,
   Lightbulb,
-  ChevronDown,
-  ChevronRight,
   CheckCircle2,
   XCircle,
   AlertCircle,
-  Clock,
 } from "lucide-react"
 
 export default function InsightsPage() {
   const [selectedEnv, setSelectedEnv] = useState("customer-support")
   const kb = knowledgeBases[selectedEnv as keyof typeof knowledgeBases]
-  const fallbackInsights = {
+  interface TopicData { topic: string; count: number; percentage: number }
+  interface DocData { name: string; retrievals: number; percentage: number }
+  interface SourceData { source: string; utilization: number }
+  interface InsightsData {
+    totalQuestions: number
+    retrievalQuality: number
+    coverageScore: number
+    popularTopics: TopicData[]
+    mostRetrievedDocuments: DocData[]
+    sourceUtilization: SourceData[]
+  }
+
+  const fallbackInsights: InsightsData = {
     totalQuestions: 12480,
     retrievalQuality: 94,
     coverageScore: 87,
@@ -38,7 +45,8 @@ export default function InsightsPage() {
     mostRetrievedDocuments: [{ name: "Refund Policy.pdf", retrievals: 1240, percentage: 18 }, { name: "Returns Policy.pdf", retrievals: 980, percentage: 14 }],
     sourceUtilization: [{ source: "Policy Documents", utilization: 42 }, { source: "FAQs", utilization: 28 }],
   }
-  const data = (kb as any).insights || fallbackInsights
+  const kbData = kb as typeof kb & { insights?: InsightsData }
+  const data = kbData.insights || fallbackInsights
 
   return (
     <div className="container-page py-8">
@@ -108,7 +116,7 @@ export default function InsightsPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {(data.popularTopics || fallbackInsights.popularTopics).map((topic: any, i: number) => (
+              {(data.popularTopics || fallbackInsights.popularTopics).map((topic: TopicData, i: number) => (
                 <div key={topic.topic}>
                   <div className="flex items-center justify-between text-sm mb-1.5">
                     <span className="font-medium">{topic.topic}</span>
@@ -133,7 +141,7 @@ export default function InsightsPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {(data.mostRetrievedDocuments || fallbackInsights.mostRetrievedDocuments).map((doc: any, i: number) => (
+              {(data.mostRetrievedDocuments || fallbackInsights.mostRetrievedDocuments).map((doc: DocData, i: number) => (
                 <div key={doc.name}>
                   <div className="flex items-center justify-between text-sm mb-1.5">
                     <span className="font-medium">{doc.name}</span>
@@ -167,7 +175,7 @@ export default function InsightsPage() {
               { label: "Low Confidence", value: `${knowledgeGapsEngine.summary.lowConfidenceRate}%`, sub: `${knowledgeGapsEngine.summary.lowConfidence} questions`, icon: AlertCircle, color: "text-amber-500" },
               { label: "Unanswered", value: `${knowledgeGapsEngine.summary.unansweredRate}%`, sub: `${knowledgeGapsEngine.summary.unanswered} questions`, icon: XCircle, color: "text-red-500" },
               { label: "Gaps Identified", value: knowledgeGapsEngine.gaps.length.toString(), icon: AlertTriangle, color: "text-amber-500" },
-            ].map((item, i) => (
+            ].map((item) => (
               <div key={item.label} className="p-3 rounded-xl border border-border text-center">
                 <item.icon className={`w-4 h-4 mx-auto mb-1 ${item.color || "text-primary"}`} />
                 <p className="text-lg font-bold">{item.value}</p>
@@ -262,7 +270,7 @@ export default function InsightsPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {(data.sourceUtilization || fallbackInsights.sourceUtilization).map((source: any) => (
+              {(data.sourceUtilization || fallbackInsights.sourceUtilization).map((source: SourceData) => (
                 <div key={source.source}>
                   <div className="flex items-center justify-between text-sm mb-1.5">
                     <span className="font-medium">{source.source}</span>

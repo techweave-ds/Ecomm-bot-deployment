@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -17,7 +17,6 @@ import {
   Bookmark,
   History,
   FolderOpen,
-  Star,
   CheckCircle2,
   BarChart3,
   Layers,
@@ -25,9 +24,7 @@ import {
   GitBranch,
   Shield,
   Lightbulb,
-  Network,
   Hash,
-  Clock,
   Zap,
   Activity,
 } from "lucide-react"

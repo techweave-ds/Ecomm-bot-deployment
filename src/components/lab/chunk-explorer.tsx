@@ -2,11 +2,11 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { sampleChunks } from "@/lib/data"
-import { Layers, ChevronDown, ChevronRight, FileText, BarChart3, Hash, Clock, Link2, ExternalLink, Expand } from "lucide-react"
+import { Layers, ChevronDown, ChevronRight, FileText, Hash, Clock, Link2, ExternalLink, Expand } from "lucide-react"
 
 interface ChunkData {
   id: number
@@ -26,7 +26,8 @@ interface ChunkExplorerProps {
 
 export function ChunkExplorer({ chunks = sampleChunks as ChunkData[], className }: ChunkExplorerProps) {
   const [expandedChunk, setExpandedChunk] = useState<number | null>(null)
-  const [viewingRelated, setViewingRelated] = useState<number | null>(null)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [viewingRelated] = useState<number | null>(null)
 
   return (
     <div className={className}>

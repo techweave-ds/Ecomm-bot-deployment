@@ -28,9 +28,7 @@ import {
   Database,
   Activity,
   TrendingUp,
-  Globe,
   Zap,
-  ChevronLeft,
   Info,
 } from "lucide-react"
 
@@ -40,7 +38,6 @@ export default function DocumentsPage() {
   const [selectedDoc, setSelectedDoc] = useState<DetailDoc>(null)
   const [uploadModal, setUploadModal] = useState(false)
   const [uploadStep, setUploadStep] = useState(0)
-  const [uploadProgress, setUploadProgress] = useState<string[]>([])
   const [activeTab, setActiveTab] = useState<"documents" | "relationships" | "chunks">("documents")
 
   const allDocs = Object.values(knowledgeBases).flatMap((kb) => kb.documents)
@@ -55,11 +52,10 @@ export default function DocumentsPage() {
   const handleUpload = () => {
     setUploadModal(true)
     setUploadStep(0)
-    setUploadProgress([])
     const stages = ["Uploading", "Parsing", "Chunking", "Embedding", "Indexing", "Ready"]
-    stages.forEach((stage, i) => {
-      setTimeout(() => { setUploadStep(i + 1); setUploadProgress((prev) => [...prev, stage]) }, (i + 1) * 800)
-    })
+    for (let i = 0; i < stages.length; i++) {
+      setTimeout(() => { setUploadStep(i + 1) }, (i + 1) * 800)
+    }
   }
 
   // Find relationships for selectedDoc
@@ -190,7 +186,7 @@ export default function DocumentsPage() {
             <CardDescription>Inspect individual chunks with retrieval metrics, similarity scores, and connected chunks</CardDescription>
           </CardHeader>
           <CardContent>
-            <ChunkExplorer chunks={sampleChunks as any} />
+            <ChunkExplorer chunks={sampleChunks} />
           </CardContent>
         </Card>
       )}
@@ -238,7 +234,7 @@ export default function DocumentsPage() {
                     { label: "Embedding Model", value: "BGE Large", icon: Database },
                     { label: "Vector Count", value: selectedDoc.chunks.toString(), icon: Grid3X3 },
                     { label: "Vector Dimensions", value: "1024", icon: BarChart3 },
-                    { label: "Retrieval Count", value: `${Math.floor(Math.random() * 500 + 100)}`, icon: TrendingUp },
+                    { label: "Retrieval Count", value: "342", icon: TrendingUp },
                     { label: "Chunk Strategy", value: "Semantic + Overlap", icon: Layers },
                     { label: "Index Status", value: "Optimal", icon: CheckCircle },
                   ].map((m) => (
@@ -306,9 +302,9 @@ export default function DocumentsPage() {
                 </h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {[
-                    { label: "Retrieval Count", value: Math.floor(Math.random() * 500 + 100).toString(), icon: Zap },
-                    { label: "Avg Similarity", value: `${Math.floor(Math.random() * 10 + 88)}%`, icon: Activity },
-                    { label: "Times Referenced", value: Math.floor(Math.random() * 50 + 20).toString(), icon: Hash },
+                    { label: "Retrieval Count", value: "324", icon: Zap },
+                    { label: "Avg Similarity", value: "96%", icon: Activity },
+                    { label: "Times Referenced", value: "47", icon: Hash },
                     { label: "Last Retrieved", value: "Today", icon: Clock },
                   ].map((m) => (
                     <div key={m.label} className="p-3 rounded-xl border border-border text-center">

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { KnowledgeHealthCard } from "@/components/lab/knowledge-health"
-import { ArrowRight, Building2, Upload, Sparkles, Library, Shield, Monitor, ScrollText, Gauge } from "lucide-react"
+import { ArrowRight, Building2, Upload, Sparkles, Library, Shield, Monitor, ScrollText } from "lucide-react"
 import Link from "next/link"
 import { knowledgeBases } from "@/lib/data"
 

@@ -5,10 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "npx serve out",
+    "start": "npx serve@latest out",
     "lint": "eslint",
-    "cf:build": "npm run build",
-    "cf:deploy": "npm run cf:build && npx wrangler pages deploy out --project-name=glowing-knight"
+    "cf:deploy": "npm run build && npx wrangler pages deploy out --project-name=glowing-knight"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

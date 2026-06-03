@@ -2,22 +2,17 @@
 
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { dashboardData, knowledgeBases } from "@/lib/data"
-import { KnowledgeHealthCard, getHealthColor } from "@/components/lab/knowledge-health"
+import { getHealthColor } from "@/components/lab/knowledge-health"
 import { RelationshipExplorer } from "@/components/lab/relationship-explorer"
 import {
   FileText,
   Layers,
   Gauge,
-  Target,
-  TrendingUp,
   Hash,
   BarChart3,
   AlertTriangle,
   Globe,
-  CheckCircle2,
-  Info,
   Zap,
   Activity,
   Shield,
@@ -192,7 +187,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {dashboardData.mostRetrievedDocuments.map((doc, i) => (
+              {dashboardData.mostRetrievedDocuments.map((doc) => (
                 <div key={doc.name}>
                   <div className="flex items-center justify-between text-sm mb-1">
                     <span className="font-medium">{doc.name}</span>
@@ -217,7 +212,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {dashboardData.mostReferencedChunks.map((chunk, i) => (
+              {dashboardData.mostReferencedChunks.map((chunk) => (
                 <div key={chunk.id}>
                   <div className="flex items-center justify-between text-sm mb-1">
                     <span>

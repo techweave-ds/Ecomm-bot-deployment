@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { KnowledgeHealthCard } from "@/components/lab/knowledge-health"
@@ -135,7 +135,14 @@ const fieldIcons: Record<string, typeof Info> = {
   readinessScore: Gauge,
 }
 
-function JourneyStep({ step, isLast, index }: { step: any; isLast: boolean; index: number }) {
+interface JourneyStepData {
+  icon: React.ComponentType<{ className?: string }>
+  label: string
+  value: string
+  detail?: string
+}
+
+function JourneyStep({ step, isLast }: { step: JourneyStepData; isLast: boolean }) {
   const [showDetail, setShowDetail] = useState(false)
   return (
     <div className="flex items-start gap-4 pb-4 relative group">
@@ -171,25 +178,22 @@ function JourneyStep({ step, isLast, index }: { step: any; isLast: boolean; inde
 
 export default function PipelinePage() {
   const [activeStep, setActiveStep] = useState(0)
-  const [isRunning, setIsRunning] = useState(false)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false)
+  const isRunning = isAutoPlaying && activeStep < steps.length
 
   useEffect(() => {
     if (!isRunning) return
-    if (activeStep >= steps.length) {
-      setIsRunning(false)
-      return
-    }
     const timer = setTimeout(() => setActiveStep((p) => p + 1), 1200)
     return () => clearTimeout(timer)
   }, [isRunning, activeStep])
 
   const handleRun = () => {
     setActiveStep(0)
-    setIsRunning(true)
+    setIsAutoPlaying(true)
   }
 
   const handleReset = () => {
-    setIsRunning(false)
+    setIsAutoPlaying(false)
     setActiveStep(0)
   }
 
@@ -208,7 +212,7 @@ export default function PipelinePage() {
                     <Icon className="w-3.5 h-3.5 text-muted" />
                     <p className="text-[10px] text-muted">{fieldLabels[key]}</p>
                   </div>
-                  <p className="text-sm font-medium">{(data as any)[key]}</p>
+                  <p className="text-sm font-medium">{String((data as Record<string, unknown>)[key])}</p>
                 </div>
               )
             })}
@@ -234,7 +238,7 @@ export default function PipelinePage() {
       )
     }
 
-    const data = s.details as Record<string, any>
+    const data = s.details as Record<string, string | number>
     const keys = Object.keys(data)
     return (
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -363,7 +367,7 @@ export default function PipelinePage() {
                   { icon: Brain, label: "LLM Invoked", value: `DeepSeek v3 (temp: 0.1)`, detail: `256 tokens generated in 1,240ms` },
                   { icon: CheckCircle, label: "Answer Generated", value: "Final response delivered", detail: `97% confidence | 3 sources cited` },
                 ].map((step, i) => (
-                    <JourneyStep key={i} step={step} isLast={i === 8} index={i} />
+                    <JourneyStep key={i} step={step} isLast={i === 8} />
                   ))}
               </div>
             </CardContent>
