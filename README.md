@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TechWeave DS AI Lab
 
-## Getting Started
+Build, Test, Validate and Understand Enterprise AI Knowledge Systems.
 
-First, run the development server:
+## Prerequisites
+
+- Node.js 20+ ([download](https://nodejs.org/))
+- npm (comes with Node.js)
+
+## Quick Start
 
 ```bash
+# 1. Install dependencies
+npm install
+
+# 2. Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Deploy
 
-To learn more about Next.js, take a look at the following resources:
+### Vercel (recommended)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm i -g vercel
+vercel
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Cloudflare Pages
 
-## Deploy on Vercel
+The app is configured for static export (`output: "export"`). Deploy the `out/` folder:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Via CLI:**
+```bash
+npm run cf:deploy
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Via Dashboard:**
+1. Go to **Cloudflare Dashboard → Pages → Create a project**
+2. Connect your Git repository
+3. Build command: `npm run build`
+4. Build output directory: `out`
+5. Deploy
+
+### Netlify
+
+```bash
+npm i -g netlify-cli
+netlify deploy --prod --dir=out
+```
+
+Or connect your Git repository directly in the Netlify UI (set publish directory to `out`).
+
+## Routes
+
+| Route | Description |
+|-------|-------------|
+| `/lab` | Experience selection & knowledge health |
+| `/lab/workspace` | Query knowledge, inspect retrieval & trust |
+| `/lab/documents` | Manage documents, explore relationships & chunks |
+| `/lab/pipeline` | Observe document-to-knowledge processing |
+| `/lab/dashboard` | Operational visibility into knowledge quality |
+| `/lab/insights` | Knowledge gaps, topics, utilization analytics |
+| `/lab/settings` | Embedding, vector DB, LLM configuration |
