@@ -1,3 +1,5 @@
+import type { RetrievedChunk, Citation, PromptAssembly, QueryAnalytics, GroundingResult, AnswerQuality, QueryTrace, KnowledgeSource, QueryHistoryItem, ChunkDetail } from "./types"
+
 export const knowledgeBases = {
   "customer-support": {
     name: "Customer Support",
@@ -433,3 +435,132 @@ export const pipelineDeepDive = {
     vectorStoreStatus: "Connected",
   },
 }
+
+export const enrichedRetrievedChunks: RetrievedChunk[] = [
+  {
+    id: "Chunk 12", text: "Refund requests may be initiated within seven days of delivery. Items must be unused and in original packaging. Processing takes 5-7 business days.", score: 0.98, rank: 1,
+    source: "Refund Policy.pdf", pageNumber: 3, sectionName: "Refund Eligibility", chunkSize: 256, tokenCount: 24, chunkOverlap: 128,
+    metadata: { pageNumber: 3, sourceType: "PDF", createdDate: "2026-01-15", category: "Policy" },
+  },
+  {
+    id: "Chunk 17", text: "Refunds are issued to the original payment method. Store credit is available as an alternative. Expedited processing available for premium members.", score: 0.92, rank: 2,
+    source: "Refund Policy.pdf", pageNumber: 4, sectionName: "Refund Processing", chunkSize: 240, tokenCount: 18, chunkOverlap: 120,
+    metadata: { pageNumber: 4, sourceType: "PDF", createdDate: "2026-01-15", category: "Policy" },
+  },
+  {
+    id: "Chunk 24", text: "Damaged items may be eligible for full refund including shipping costs. Photographic evidence required within 48 hours of delivery.", score: 0.84, rank: 3,
+    source: "Returns Policy.pdf", pageNumber: 2, sectionName: "Damaged Items", chunkSize: 200, tokenCount: 16, chunkOverlap: 100,
+    metadata: { pageNumber: 2, sourceType: "PDF", createdDate: "2026-02-01", category: "Policy" },
+  },
+  {
+    id: "Chunk 31", text: "Return shipping is free for premium members. Standard processing time is 3-5 business days after item is received.", score: 0.79, rank: 4,
+    source: "Returns Policy.pdf", pageNumber: 5, sectionName: "Return Shipping", chunkSize: 192, tokenCount: 14, chunkOverlap: 96,
+    metadata: { pageNumber: 5, sourceType: "PDF", createdDate: "2026-02-01", category: "Policy" },
+  },
+  {
+    id: "Chunk 42", text: "Extended warranty plans cover up to 3 years from date of purchase. Coverage includes manufacturing defects and hardware failures.", score: 0.72, rank: 5,
+    source: "Warranty Guide.pdf", pageNumber: 7, sectionName: "Extended Warranty", chunkSize: 224, tokenCount: 18, chunkOverlap: 112,
+    metadata: { pageNumber: 7, sourceType: "PDF", createdDate: "2026-03-10", category: "Guide" },
+  },
+]
+
+export const sampleCitations: Citation[] = [
+  {
+    id: "cit-1", documentName: "Refund Policy.pdf", pageNumber: 3, sectionName: "Refund Eligibility",
+    paragraph: "Refund requests may be initiated within seven days of delivery. Items must be unused and in original packaging.",
+    retrievedScore: 0.98, confidenceScore: 97, sourceLink: "#",
+    highlightedText: "Refund requests may be initiated within seven days of delivery",
+    answerSegment: "The refund period is 7 days from delivery",
+  },
+  {
+    id: "cit-2", documentName: "Refund Policy.pdf", pageNumber: 4, sectionName: "Refund Processing",
+    paragraph: "Processing takes 5-7 business days. Refunds are issued to the original payment method.",
+    retrievedScore: 0.92, confidenceScore: 94, sourceLink: "#",
+    highlightedText: "Processing takes 5-7 business days",
+    answerSegment: "Processing takes 5-7 business days",
+  },
+  {
+    id: "cit-3", documentName: "Returns Policy.pdf", pageNumber: 2, sectionName: "Damaged Items",
+    paragraph: "Damaged items may be eligible for full refund including shipping costs. Photographic evidence required within 48 hours of delivery.",
+    retrievedScore: 0.84, confidenceScore: 89, sourceLink: "#",
+    highlightedText: "Damaged items may be eligible for full refund including shipping costs",
+    answerSegment: "Damaged items qualify for full refund including shipping",
+  },
+]
+
+export const samplePromptAssembly: PromptAssembly = {
+  systemPrompt: "You are a helpful assistant. Use the following context to answer the user's question accurately. Always cite sources using [citation_id] notation. If the context does not contain sufficient information, say so.",
+  retrievedContext: "[Chunk 12] Refund requests may be initiated within seven days of delivery. Items must be unused and in original packaging. Processing takes 5-7 business days.\n\n[Chunk 17] Refunds are issued to the original payment method. Store credit is available as an alternative. Expedited processing available for premium members.\n\n[Chunk 24] Damaged items may be eligible for full refund including shipping costs. Photographic evidence required within 48 hours of delivery.",
+  userQuestion: "What is the refund policy?",
+  finalPrompt: "You are a helpful assistant. Use the following context to answer the user's question accurately. Always cite sources using [citation_id] notation.\n\nContext:\n[Chunk 12] Refund requests may be initiated within seven days of delivery. Items must be unused and in original packaging. Processing takes 5-7 business days.\n[Chunk 17] Refunds are issued to the original payment method. Store credit is available as an alternative.\n[Chunk 24] Damaged items may be eligible for full refund including shipping costs.\n\nQuestion: What is the refund policy?\n\nAnswer:",
+}
+
+export const sampleAnalytics: QueryAnalytics = {
+  totalTimeMs: 2100,
+  embeddingSearchTimeMs: 420,
+  rerankTimeMs: 180,
+  generationTimeMs: 1500,
+  inputTokens: 1248,
+  outputTokens: 256,
+  totalTokens: 1504,
+  estimatedCost: 0.0032,
+  confidenceScore: 97,
+  groundingScore: 94,
+}
+
+export const sampleGrounding: GroundingResult = {
+  grounded: true,
+  percentage: 94,
+  supportedSegments: 3,
+  totalSegments: 4,
+  unsupportedSegments: ["Store credit availability requires verification"],
+}
+
+export const sampleAnswerQuality: AnswerQuality = {
+  label: "Grounded",
+  color: "green",
+  explanation: "All key claims are directly supported by retrieved source documents with high similarity scores (avg 91%). Each citation maps to a specific chunk in the knowledge base.",
+}
+
+export const sampleQueryTrace: QueryTrace = {
+  id: "trace-001",
+  question: "What is the refund policy?",
+  answer: "Our refund policy allows customers to initiate refund requests within seven days of delivery. Items must be unused and in their original packaging to qualify [1]. Once approved, refunds are typically processed within 5-7 business days and issued to the original payment method [2]. Damaged items may be eligible for a full refund including shipping costs [3].",
+  queryExpansion: {
+    original: "What is the refund policy?",
+    expanded: ["refund policy", "return policy", "money back guarantee", "refund terms"],
+  },
+  vectorSearch: { strategy: "Cosine Similarity", topK: 5, threshold: 0.75, results: 3 },
+  retrievedChunks: enrichedRetrievedChunks,
+  reranking: { strategy: "Reciprocal Rank Fusion", before: 10, after: 5 },
+  promptAssembly: samplePromptAssembly,
+  llmGeneration: { model: "DeepSeek v3", temperature: 0.1, tokensGenerated: 256, latencyMs: 1240, cost: 0.0012 },
+  finalResponse: "Our refund policy allows customers to initiate refund requests within seven days of delivery...",
+  analytics: sampleAnalytics,
+  grounding: sampleGrounding,
+  quality: sampleAnswerQuality,
+  citations: sampleCitations,
+  timestamp: "2026-06-03T14:32:10Z",
+}
+
+export const sampleKnowledgeSources: KnowledgeSource[] = [
+  { name: "Refund Policy.pdf", status: "Indexed", pages: 18, chunks: 124, embeddings: 124, lastUpdated: "Today", coverage: 96, quality: 94, retrievalFrequency: 1240, category: "Policy" },
+  { name: "Returns Policy.pdf", status: "Indexed", pages: 12, chunks: 98, embeddings: 98, lastUpdated: "Today", coverage: 91, quality: 89, retrievalFrequency: 980, category: "Policy" },
+  { name: "Warranty Guide.pdf", status: "Indexed", pages: 24, chunks: 156, embeddings: 156, lastUpdated: "Yesterday", coverage: 88, quality: 86, retrievalFrequency: 650, category: "Guide" },
+  { name: "Shipping Guide.pdf", status: "Processing", pages: 8, chunks: 67, embeddings: 0, lastUpdated: "2 days ago", coverage: 0, quality: 0, retrievalFrequency: 870, category: "Guide" },
+  { name: "Tracking Guide.pdf", status: "Queued", pages: 6, chunks: 0, embeddings: 0, lastUpdated: "3 days ago", coverage: 0, quality: 0, retrievalFrequency: 540, category: "Guide" },
+]
+
+export const sampleQueryHistory: QueryHistoryItem[] = [
+  { id: "q-001", query: "What is the refund policy?", timestamp: "2026-06-03T14:32:10Z", latencyMs: 2100, confidence: 97, status: "success", environment: "customer-support" },
+  { id: "q-002", query: "How long does shipping take?", timestamp: "2026-06-03T14:15:00Z", latencyMs: 1800, confidence: 94, status: "success", environment: "customer-support" },
+  { id: "q-003", query: "What are the warranty terms for electronics?", timestamp: "2026-06-03T13:45:00Z", latencyMs: 3200, confidence: 72, status: "partial", environment: "customer-support" },
+  { id: "q-004", query: "How do I reset my password?", timestamp: "2026-06-03T13:12:00Z", latencyMs: 1500, confidence: 99, status: "success", environment: "it-support" },
+  { id: "q-005", query: "What is the international shipping policy?", timestamp: "2026-06-03T12:30:00Z", latencyMs: 4500, confidence: 45, status: "failed", environment: "customer-support" },
+]
+
+export const sampleChunkDetails: ChunkDetail[] = [
+  { id: 12, text: "Refund requests may be initiated within seven days of delivery. Items must be unused and in original packaging. Processing takes 5-7 business days.", tokens: 24, source: "Refund Policy.pdf", retrievals: 324, lastRetrieved: "2 hours ago", avgSimilarity: 96, connectedChunks: [8, 11, 17, 19], chunkSize: 256, tokenCount: 24, chunkOverlap: 128, pageNumber: 3, sectionName: "Refund Eligibility", embeddingModel: "BGE Large", vectorDimensions: 1024, createdTimestamp: "2026-01-15T10:00:00Z", embeddingStatus: "Active" },
+  { id: 17, text: "Refunds are issued to the original payment method. Store credit is available as an alternative. Expedited processing available for premium members.", tokens: 18, source: "Refund Policy.pdf", retrievals: 287, lastRetrieved: "4 hours ago", avgSimilarity: 94, connectedChunks: [12, 15, 21], chunkSize: 240, tokenCount: 18, chunkOverlap: 120, pageNumber: 4, sectionName: "Refund Processing", embeddingModel: "BGE Large", vectorDimensions: 1024, createdTimestamp: "2026-01-15T10:00:05Z", embeddingStatus: "Active" },
+  { id: 24, text: "Damaged items may be eligible for full refund including shipping costs. Photographic evidence required within 48 hours of delivery.", tokens: 16, source: "Returns Policy.pdf", retrievals: 198, lastRetrieved: "1 hour ago", avgSimilarity: 89, connectedChunks: [12, 17, 22, 28], chunkSize: 200, tokenCount: 16, chunkOverlap: 100, pageNumber: 2, sectionName: "Damaged Items", embeddingModel: "BGE Large", vectorDimensions: 1024, createdTimestamp: "2026-02-01T14:00:00Z", embeddingStatus: "Active" },
+]
