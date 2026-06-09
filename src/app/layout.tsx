@@ -2,8 +2,8 @@ import type { Metadata } from "next"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "TechWeave DS AI Lab - Enterprise AI Knowledge Engineering Workspace",
-  description: "Build, Test, Validate and Understand Enterprise AI Knowledge Systems",
+  title: "KnowledgeOS — The Operating System for Enterprise Knowledge",
+  description: "KnowledgeOS helps enterprises measure, validate, and optimize the knowledge powering their AI systems. Make AI explainable, auditable, and trustworthy.",
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
