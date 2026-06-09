@@ -2,7 +2,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme inline {
+@theme {
   --color-background: #fafbfc;
   --color-foreground: #0f172a;
   --color-muted: #64748b;
@@ -152,17 +152,10 @@ body {
 }
 
 @utility cta-section {
+  position: relative;
+  overflow: hidden;
   background: #0f172a;
   color: white;
-}
-
-@utility cta-section-outline {
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: white;
-  background: transparent;
-  &:hover {
-    background: rgba(255, 255, 255, 0.08);
-  }
 }
 
 @utility gradient-glow {
