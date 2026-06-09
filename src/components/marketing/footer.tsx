@@ -69,7 +69,7 @@ export function Footer() {
         </div>
       </section>
 
-      <footer className="border-t border-border bg-card">
+      <footer className="border-t border-border bg-card dark:bg-gray-900">
         <div className="container-page py-14">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
             <div className="col-span-2 md:col-span-1">
