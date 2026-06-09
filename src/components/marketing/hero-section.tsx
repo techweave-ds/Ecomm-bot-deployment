@@ -48,7 +48,7 @@ export function HeroSection({ content, children }: { content: HeroContent; child
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>
-            <Button variant="outline" size="lg" asChild>
+            <Button variant="outline" size="lg" className="border-primary/30 bg-white/80 hover:bg-white" asChild>
               <Link href={content.cta.secondary.href}>
                 <Play className="w-4 h-4" />
                 {content.cta.secondary.label}
