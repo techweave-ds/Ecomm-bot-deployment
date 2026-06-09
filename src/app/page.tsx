@@ -49,7 +49,7 @@ function Hero() {
             <Button size="lg" asChild>
               <a href="/build-your-bot">Build Your Bot <ArrowRight className="w-4 h-4" /></a>
             </Button>
-            <Button variant="outline" size="lg" className="border-primary/40 dark:border-primary/60 bg-card dark:bg-gray-800 shadow-sm hover:shadow-md hover:border-primary/60" asChild>
+            <Button variant="outline" size="lg" asChild>
               <a href="/demo">See How It Works</a>
             </Button>
           </div>
