@@ -66,7 +66,7 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28 bg-gray-50/60 border-y border-border">
+      <section className="py-20 md:py-28 bg-gray-50/60 dark:bg-gray-900/40 border-y border-border">
         <div className="container-page">
           <motion.div className="text-center max-w-2xl mx-auto mb-14" {...fadeInUp}>
             <div className="section-label">Industries</div>

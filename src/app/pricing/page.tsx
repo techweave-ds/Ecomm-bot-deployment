@@ -14,7 +14,7 @@ export default function PricingPage() {
       <HeroSection content={heroContent.pricing} />
       <section className="py-20 md:py-28">
         <div className="container-page text-center max-w-2xl mx-auto">
-          <motion.div className="rounded-2xl bg-white border border-border p-10 md:p-14 shadow-sm" {...fadeInUp}>
+          <motion.div className="rounded-2xl bg-card border border-border p-10 md:p-14 shadow-sm" {...fadeInUp}>
             <div className="w-16 h-16 rounded-2xl bg-primary-light flex items-center justify-center mx-auto mb-6">
               <Mail className="w-8 h-8 text-primary" />
             </div>

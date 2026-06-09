@@ -49,7 +49,7 @@ function Hero() {
             <Button size="lg" asChild>
               <a href="/build-your-bot">Build Your Bot <ArrowRight className="w-4 h-4" /></a>
             </Button>
-            <Button variant="outline" size="lg" className="border-primary/40 bg-white shadow-sm hover:shadow-md hover:border-primary/60" asChild>
+            <Button variant="outline" size="lg" className="border-primary/40 dark:border-primary/60 bg-card dark:bg-gray-800 shadow-sm hover:shadow-md hover:border-primary/60" asChild>
               <a href="/demo">See How It Works</a>
             </Button>
           </div>
@@ -62,10 +62,10 @@ function Hero() {
                 return (
                   <div key={s.label} className="flex flex-col items-center flex-1 relative">
                     {i > 0 && (
-                      <div className={`absolute top-5 -left-1/2 w-full h-0.5 hidden md:block transition-colors duration-500 ${isPast || isActive ? "bg-primary/30" : "bg-gray-200"}`} />
+                      <div className={`absolute top-5 -left-1/2 w-full h-0.5 hidden md:block transition-colors duration-500 ${isPast || isActive ? "bg-primary/30" : "bg-gray-200 dark:bg-gray-700"}`} />
                     )}
                     <div
-                      className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mb-2.5 transition-all duration-500 relative z-10 ${isActive ? "bg-primary shadow-lg shadow-primary/25 scale-110" : isPast ? "bg-primary/10" : "bg-gray-100"}`}
+                      className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mb-2.5 transition-all duration-500 relative z-10 ${isActive ? "bg-primary shadow-lg shadow-primary/25 scale-110" : isPast ? "bg-primary/10" : "bg-gray-100 dark:bg-gray-700"}`}
                     >
                       <Icon className={`w-5 h-5 md:w-6 md:h-6 transition-colors duration-500 ${isActive ? "text-white" : isPast ? "text-primary" : "text-muted"}`} />
                     </div>
@@ -90,7 +90,7 @@ const problems = [
 
 function ProblemSection() {
   return (
-    <section className="py-20 md:py-28 bg-gray-50/60">
+    <section className="py-20 md:py-28 bg-gray-50/60 dark:bg-gray-900/40">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div className="text-center max-w-2xl mx-auto mb-14" {...fadeInUp}>
           <div className="section-label">Why Enterprise AI Fails</div>
@@ -100,7 +100,7 @@ function ProblemSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
           {problems.map((p, i) => (
             <motion.div key={p.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.08 }}>
-              <div className="p-6 rounded-xl bg-white border border-border h-full hover:shadow-md transition-all group">
+              <div className="p-6 rounded-xl bg-card border border-border h-full hover:shadow-md transition-all group">
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: `${p.color}15` }}>
                   <p.icon className="w-5 h-5" style={{ color: p.color }} />
                 </div>
@@ -178,7 +178,7 @@ const pillars = [
 
 function PillarsSection() {
   return (
-    <section className="py-20 md:py-28 bg-gray-50/60">
+    <section className="py-20 md:py-28 bg-gray-50/60 dark:bg-gray-900/40">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div className="text-center max-w-2xl mx-auto mb-14" {...fadeInUp}>
           <div className="section-label">The KnowledgeOS Platform</div>
@@ -188,7 +188,7 @@ function PillarsSection() {
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {pillars.map((p, i) => (
             <motion.div key={p.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }}>
-              <div className="p-7 rounded-xl bg-white border border-border h-full hover:shadow-md transition-all">
+              <div className="p-7 rounded-xl bg-card border border-border h-full hover:shadow-md transition-all">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: `${p.color}15` }}>
                   <p.icon className="w-6 h-6" style={{ color: p.color }} />
                 </div>
@@ -227,8 +227,8 @@ function PreviewSection() {
           <p className="text-muted leading-relaxed">A clean, powerful interface designed for both technical and non-technical teams.</p>
         </motion.div>
         <div className="max-w-5xl mx-auto">
-          <div className="rounded-2xl border border-border bg-white shadow-sm overflow-hidden mb-10">
-            <div className="flex items-center gap-1.5 px-4 py-3 bg-gray-50 border-b border-border">
+          <div className="rounded-2xl border border-border bg-card shadow-sm overflow-hidden mb-10">
+            <div className="flex items-center gap-1.5 px-4 py-3 bg-gray-50 dark:bg-gray-800 border-b border-border">
               {["#EF4444", "#F59E0B", "#10B981"].map((c) => (
                 <div key={c} className="w-3 h-3 rounded-full" style={{ backgroundColor: c }} />
               ))}
@@ -237,22 +237,22 @@ function PreviewSection() {
             <div className="p-6 md:p-10">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-gray-50 border border-border">
+                  <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border border-border">
                     <div className="flex items-center gap-3 mb-2">
                       <Upload className="w-4 h-4 text-primary" />
                       <span className="text-sm font-medium">knowledge_base.pdf</span>
                     </div>
-                    <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                    <div className="h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                       <div className="h-full w-full bg-gradient-to-r from-primary to-accent rounded-full" />
                     </div>
                     <p className="text-xs text-muted mt-1">2.4 MB · 47 pages · 156 chunks indexed</p>
                   </div>
-                  <div className="p-4 rounded-xl bg-gray-50 border border-border">
+                  <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border border-border">
                     <div className="flex items-center gap-2 mb-2">
                       <MessageSquare className="w-4 h-4 text-primary" />
                       <span className="text-sm font-medium">Ask a question</span>
                     </div>
-                    <div className="p-3 rounded-lg bg-white border border-border text-sm text-muted">
+                    <div className="p-3 rounded-lg bg-card border border-border text-sm text-muted">
                       &ldquo;What is the return policy for enterprise customers?&rdquo;
                     </div>
                     <div className="mt-3 p-3 rounded-lg bg-primary text-white text-sm">
@@ -300,7 +300,7 @@ const howItWorks = [
 
 function HowItWorksSection() {
   return (
-    <section className="py-20 md:py-28 bg-gray-50/60">
+    <section className="py-20 md:py-28 bg-gray-50/60 dark:bg-gray-900/40">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div className="text-center max-w-2xl mx-auto mb-14" {...fadeInUp}>
           <div className="section-label">Simple 4-Step Process</div>
@@ -317,7 +317,7 @@ function HowItWorksSection() {
                   <div className="hidden md:flex absolute left-4 top-1 w-8 h-8 rounded-full bg-primary text-white text-sm font-bold items-center justify-center border-4 border-background">
                     {step.step}
                   </div>
-                  <div className="p-6 rounded-xl bg-white border border-border hover:shadow-sm transition-all">
+                  <div className="p-6 rounded-xl bg-card border border-border hover:shadow-sm transition-all">
                     <div className="flex items-center gap-3 mb-2 md:hidden">
                       <div className="w-7 h-7 rounded-lg bg-primary text-white text-xs font-bold flex items-center justify-center">{step.step}</div>
                       <h3 className="font-semibold text-foreground">{step.title}</h3>
@@ -356,7 +356,7 @@ function OutcomesSection() {
             const Icon = o.icon
             return (
               <motion.div key={o.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }}>
-                <div className="p-6 rounded-xl bg-white border border-border text-center h-full hover:shadow-md transition-all">
+                <div className="p-6 rounded-xl bg-card border border-border text-center h-full hover:shadow-md transition-all">
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: `${o.color}15` }}>
                     <Icon className="w-6 h-6" style={{ color: o.color }} />
                   </div>

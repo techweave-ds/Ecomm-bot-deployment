@@ -25,7 +25,7 @@ export default function ProductPage() {
     <SiteShell>
       <HeroSection content={heroContent.product}>
         <div className="max-w-5xl mx-auto">
-          <div className="rounded-xl bg-white border border-border p-6 md:p-8 shadow-sm">
+          <div className="rounded-xl bg-card border border-border p-6 md:p-8 shadow-sm">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               {knowledgeProcessingSteps.slice(0, 6).map((step, i) => {
                 const Vis = pipelineVisuals[i]
@@ -70,7 +70,7 @@ export default function ProductPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28 bg-gray-50/60 border-y border-border">
+      <section className="py-20 md:py-28 bg-gray-50/60 dark:bg-gray-900/40 border-y border-border">
         <div className="container-page">
           <motion.div className="text-center max-w-2xl mx-auto mb-14" {...fadeInUp}>
             <div className="section-label">Step-by-Step</div>
@@ -131,7 +131,7 @@ export default function ProductPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28 bg-gray-50/60 border-y border-border">
+      <section className="py-20 md:py-28 bg-gray-50/60 dark:bg-gray-900/40 border-y border-border">
         <div className="container-page">
           <motion.div className="text-center max-w-2xl mx-auto mb-14" {...fadeInUp}>
             <div className="section-label">Deployment</div>
