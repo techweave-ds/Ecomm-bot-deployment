@@ -6,8 +6,7 @@ import { Button } from "@/components/ui/button"
 import { HeroSection } from "@/components/marketing/hero-section"
 import { SiteShell } from "@/components/marketing/site-shell"
 import { heroContent } from "@/data/content"
-
-const fadeInUp = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.5 } }
+import { fadeInUp } from "@/lib/animations"
 
 export default function PricingPage() {
   return (
@@ -15,7 +14,7 @@ export default function PricingPage() {
       <HeroSection content={heroContent.pricing} />
       <section className="py-20 md:py-28">
         <div className="container-page text-center max-w-2xl mx-auto">
-          <motion.div className="card p-10 md:p-14" {...fadeInUp}>
+          <motion.div className="rounded-2xl bg-white border border-border p-10 md:p-14 shadow-sm" {...fadeInUp}>
             <div className="w-16 h-16 rounded-2xl bg-primary-light flex items-center justify-center mx-auto mb-6">
               <Mail className="w-8 h-8 text-primary" />
             </div>
@@ -33,17 +32,17 @@ export default function PricingPage() {
           </motion.div>
         </div>
       </section>
-      <section className="py-20 md:py-28 bg-primary-dark text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary-dark pointer-events-none" />
+      <section className="py-20 md:py-28 bg-[#0f172a] text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/10 pointer-events-none" />
         <div className="container-page relative z-10 text-center">
           <motion.h2 className="text-3xl md:text-4xl font-bold tracking-tight" {...fadeInUp}>
             Not Ready To Talk?
           </motion.h2>
-          <motion.p className="mt-4 text-lg text-white/80 max-w-xl mx-auto" {...fadeInUp}>
+          <motion.p className="mt-4 text-lg text-white/60 max-w-xl mx-auto" {...fadeInUp}>
             Try the builder and see how KnowledgeOS works with your own documents.
           </motion.p>
           <motion.div className="mt-8" {...fadeInUp}>
-            <Button variant="secondary" size="lg" asChild>
+            <Button size="lg" className="bg-white text-[#0f172a] hover:bg-white/90" asChild>
               <a href="/build-your-bot">Build Your Bot <ArrowRight className="w-4 h-4" /></a>
             </Button>
           </motion.div>

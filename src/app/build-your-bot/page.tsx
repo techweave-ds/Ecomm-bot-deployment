@@ -9,8 +9,9 @@ import { Textarea } from "@/components/ui/input"
 import {
   Upload, FileText, X, Send, Bot, User, Loader2,
   CheckCircle, Key, Eye, EyeOff, Zap, MessageSquare,
-  Trash2, Download, ChevronRight, Info, AlertCircle,
-  Hash, BarChart3, Sparkles, ArrowLeft,
+  Trash2, Download, Info, AlertCircle,
+  Hash, BarChart3, ArrowLeft, HelpCircle, BookOpen,
+  Shield, Clock, Lightbulb, FileUp,
 } from "lucide-react"
 import Link from "next/link"
 
@@ -95,6 +96,13 @@ const QUICK_QUESTIONS = [
   "Can I cancel my order?",
 ]
 
+const helpSteps = [
+  { icon: Key, title: "Step 1: Add Your API Key", description: "Get a free Groq API key from console.groq.com and paste it above. Your key stays in your browser — we never see it." },
+  { icon: FileUp, title: "Step 2: Upload a PDF", description: "Drop a PDF (up to 5MB) or click to browse. We support policies, manuals, FAQs — any document your bot should know." },
+  { icon: Zap, title: "Step 3: Process & Index", description: "Click 'Process Document'. PDF.js extracts the text in your browser, then it's chunked and indexed with TF-IDF — all client-side." },
+  { icon: MessageSquare, title: "Step 4: Ask Questions", description: "Your knowledge base is ready. Ask anything — the bot retrieves the most relevant chunks and answers via Groq's free LLM." },
+]
+
 export default function BuildBotPage() {
   const [apiKey, setApiKey] = useState("")
   const [showKey, setShowKey] = useState(false)
@@ -111,6 +119,8 @@ export default function BuildBotPage() {
   const [activeTab, setActiveTab] = useState<"chat" | "chunks" | "logs">("chat")
   const [stats, setStats] = useState({ queries: 0, resolved: 0 })
   const [logs, setLogs] = useState<{ time: string; intent: string; query: string; response: string }[]>([])
+  const [showHelp, setShowHelp] = useState(false)
+  const [firstVisit, setFirstVisit] = useState(true)
   const fileRef = useRef<HTMLInputElement>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const [error, setError] = useState("")
@@ -120,11 +130,18 @@ export default function BuildBotPage() {
     if (saved) { setApiKey(saved); setKeySaved(true) }
     const savedLogs = localStorage.getItem("builder_logs")
     if (savedLogs) setLogs(JSON.parse(savedLogs))
+    const visited = localStorage.getItem("builder_visited")
+    if (visited) setFirstVisit(false)
   }, [])
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages])
+
+  const dismissFirstVisit = () => {
+    setFirstVisit(false)
+    localStorage.setItem("builder_visited", "true")
+  }
 
   const saveKey = () => {
     if (!apiKey.startsWith("gsk_")) { setError("Key must start with gsk_"); return }
@@ -317,16 +334,136 @@ export default function BuildBotPage() {
             <span>KnowledgeOS</span>
             <span className="text-muted text-xs hidden sm:inline">/ Build Your Bot</span>
           </Link>
-          <Link href="/" className="text-xs text-muted hover:text-foreground transition-colors flex items-center gap-1">
-            <ArrowLeft className="w-3 h-3" /> Back to Home
-          </Link>
+          <div className="flex items-center gap-2">
+            <button onClick={() => setShowHelp(true)}
+              className="text-xs text-muted hover:text-foreground transition-colors flex items-center gap-1 p-2 rounded-lg hover:bg-gray-100">
+              <HelpCircle className="w-3.5 h-3.5" /> Help
+            </button>
+            <Link href="/" className="text-xs text-muted hover:text-foreground transition-colors flex items-center gap-1">
+              <ArrowLeft className="w-3 h-3" /> Back
+            </Link>
+          </div>
         </div>
       </header>
+
+      <AnimatePresence>
+        {firstVisit && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-white rounded-2xl shadow-xl border border-border max-w-lg w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-primary-light flex items-center justify-center">
+                    <Lightbulb className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h2 className="text-lg font-bold">Welcome to the Builder</h2>
+                    <p className="text-sm text-muted">Build your AI assistant in 4 steps</p>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  {helpSteps.map((step, i) => {
+                    const Icon = step.icon
+                    return (
+                      <div key={i} className="flex gap-3 p-3 rounded-xl bg-gray-50 border border-border">
+                        <div className="w-8 h-8 rounded-lg bg-primary-light flex items-center justify-center shrink-0">
+                          <Icon className="w-4 h-4 text-primary" />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-semibold mb-0.5">{step.title}</h4>
+                          <p className="text-xs text-muted leading-relaxed">{step.description}</p>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+                <div className="mt-5 p-3 rounded-xl bg-blue-50 border border-blue-200 flex gap-2 text-xs text-blue-700">
+                  <Shield className="w-4 h-4 shrink-0 mt-0.5" />
+                  <div>
+                    <strong>Privacy:</strong> Everything runs in your browser. Your documents and API key never leave your machine. No data stored on servers.
+                  </div>
+                </div>
+                <Button onClick={dismissFirstVisit} size="lg" className="w-full mt-5">
+                  Got It — Let&apos;s Build
+                </Button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showHelp && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-white rounded-2xl shadow-xl border border-border max-w-lg w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-primary-light flex items-center justify-center">
+                      <BookOpen className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <h2 className="text-lg font-bold">How It Works</h2>
+                      <p className="text-sm text-muted">Your guide to building an AI assistant</p>
+                    </div>
+                  </div>
+                  <button onClick={() => setShowHelp(false)} className="p-1.5 rounded-lg hover:bg-gray-100">
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+                <div className="space-y-4">
+                  {helpSteps.map((step, i) => {
+                    const Icon = step.icon
+                    return (
+                      <div key={i} className="flex gap-3 p-3 rounded-xl bg-gray-50 border border-border">
+                        <div className="w-8 h-8 rounded-lg bg-primary-light flex items-center justify-center shrink-0">
+                          <Icon className="w-4 h-4 text-primary" />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-semibold mb-0.5">{step.title}</h4>
+                          <p className="text-xs text-muted leading-relaxed">{step.description}</p>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+                <div className="mt-4 space-y-2">
+                  <h4 className="text-sm font-semibold">Tips & Notes</h4>
+                  <div className="flex items-start gap-2 text-xs text-muted">
+                    <Clock className="w-3.5 h-3.5 mt-0.5 shrink-0 text-primary" />
+                    <span>Processing time depends on document size. A 50-page PDF takes ~5-10 seconds.</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-xs text-muted">
+                    <FileText className="w-3.5 h-3.5 mt-0.5 shrink-0 text-primary" />
+                    <span>Best results with clear, text-based PDFs (not scanned images). Max 5MB file size.</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-xs text-muted">
+                    <Shield className="w-3.5 h-3.5 mt-0.5 shrink-0 text-primary" />
+                    <span>Everything runs client-side. Your data is never sent to any server except Groq for AI responses.</span>
+                  </div>
+                </div>
+                <Button onClick={() => setShowHelp(false)} variant="outline" size="lg" className="w-full mt-5">
+                  Close
+                </Button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <button onClick={() => setShowHelp(true)}
+        className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-primary text-white shadow-lg hover:bg-primary-dark transition-all flex items-center justify-center">
+        <HelpCircle className="w-5 h-5" />
+      </button>
+
       <div className="container-page py-6 max-w-7xl">
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Build Your Own Assistant</h1>
-            <p className="text-sm text-muted mt-1">Upload a PDF, configure Groq AI, and test your chatbot — all free</p>
+            <p className="text-sm text-muted mt-1">Upload a PDF, configure Groq AI, and test your chatbot — all free, all in your browser</p>
           </div>
           <div className="flex items-center gap-2">
             <Badge variant={kbReady ? "success" : "outline"} className="gap-1.5 py-1">
@@ -646,10 +783,11 @@ export default function BuildBotPage() {
           </div>
         </div>
 
-        <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-blue-50 border border-blue-200 text-sm text-blue-700">
+        <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-gradient-to-r from-blue-50 to-emerald-50 border border-blue-200 text-sm text-blue-700">
           <Info className="w-4 h-4 mt-0.5 shrink-0" />
           <div>
             <strong>100% Free Stack:</strong> Groq free tier (14,400 req/day) + PDF.js (browser) + TF-IDF search (client-side) + hosted on Cloudflare Pages. No backend, no database, no monthly cost.
+            Everything runs in your browser — your data stays yours.
           </div>
         </div>
       </div>

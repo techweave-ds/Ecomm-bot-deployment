@@ -16,32 +16,32 @@ export const heroContent = {
   home: {
     headline: "Your AI Is Only As Good As The Knowledge Behind It",
     subheadline: "Build AI assistants powered by your own knowledge, documents, policies, and expertise. Provide trusted answers backed by real sources.",
-    cta: { primary: { label: "Build Your Bot", href: "/lab/builder" }, secondary: { label: "Watch Demo", href: "/demo" } },
+    cta: { primary: { label: "Build Your Bot", href: "/build-your-bot" }, secondary: { label: "Watch Demo", href: "/demo" } },
   },
   product: {
     headline: "Build Trusted AI Assistants From Your Knowledge",
     subheadline: "Transform documents into intelligent, searchable, source-backed AI assistants in minutes.",
-    cta: { primary: { label: "Try The Demo", href: "/demo" }, secondary: { label: "See Solutions", href: "/solutions" } },
+    cta: { primary: { label: "Build Your Bot", href: "/build-your-bot" }, secondary: { label: "See Solutions", href: "/solutions" } },
   },
   solutions: {
     headline: "One Platform. Multiple Use Cases.",
     subheadline: "From customer support to compliance, KnowledgeOS powers AI assistants across every department.",
-    cta: { primary: { label: "See Demo", href: "/demo" }, secondary: { label: "Build Your Bot", href: "/lab/builder" } },
+    cta: { primary: { label: "Build Your Bot", href: "/build-your-bot" }, secondary: { label: "See Demo", href: "/demo" } },
   },
   demo: {
     headline: "See KnowledgeOS In Action",
     subheadline: "Watch how enterprises transform their knowledge into trusted, source-backed AI assistants.",
-    cta: { primary: { label: "Build Your Own Bot", href: "/lab/builder" }, secondary: { label: "Contact Us", href: "#contact" } },
+    cta: { primary: { label: "Build Your Own Bot", href: "/build-your-bot" }, secondary: { label: "See Solutions", href: "/solutions" } },
   },
   buildBot: {
     headline: "Build Your AI Assistant In Minutes",
     subheadline: "Upload your knowledge and create a custom AI assistant without writing a single line of code.",
-    cta: { primary: { label: "Get Started Free", href: "#start" }, secondary: { label: "Watch Demo", href: "/demo" } },
+    cta: { primary: { label: "Build Your Bot", href: "/build-your-bot" }, secondary: { label: "Watch Demo", href: "/demo" } },
   },
   pricing: {
     headline: "Simple, Transparent Pricing",
     subheadline: "Start free, scale as you grow. No hidden fees, no surprise charges.",
-    cta: { primary: { label: "Build Your Bot", href: "/lab/builder" }, secondary: { label: "Contact Sales", href: "#contact" } },
+    cta: { primary: { label: "Build Your Bot", href: "/build-your-bot" }, secondary: { label: "Contact Sales", href: "mailto:sales@knowledgeos.com" } },
   },
 }
 
@@ -135,10 +135,10 @@ export const howItWorksSteps = [
 ]
 
 export const businessOutcomes = [
-  { stat: "94%", label: "Faster Time to Answer", description: "Reduce resolution time from hours to seconds with instant AI responses." },
-  { stat: "60%", label: "Reduced Support Costs", description: "Cut ticket volume dramatically by deflecting common questions to your AI assistant." },
-  { stat: "100%", label: "Source Transparency", description: "Every answer backed by real sources — no hallucinations, no guesswork." },
-  { stat: "3x", label: "Knowledge Utilization", description: "Unlock the value of your documents, policies, and institutional expertise." },
+  { icon: "Zap", title: "Faster Time to Answer", description: "Reduce resolution time from hours to seconds with instant AI responses backed by your actual knowledge." },
+  { icon: "DollarSign", title: "Reduced Support Costs", description: "Deflect common questions to your AI assistant, cutting ticket volume and freeing your team for high-value work." },
+  { icon: "FileSearch", title: "Source Transparency", description: "Every answer backed by real sources with citations — no hallucinations, no guesswork, full audit trail." },
+  { icon: "Users", title: "Knowledge Democratized", description: "Unlock the value of your documents, policies, and institutional expertise across every team and department." },
 ]
 
 export const testimonials = [
@@ -321,6 +321,18 @@ export const knowledgeProcessingSteps = [
   { title: "Retrieval", description: "When asked a question, the most relevant chunks are retrieved with scores." },
   { title: "Generation", description: "The LLM generates a response grounded in the retrieved context with citations." },
 ]
+
+export const productPreviewFeatures = [
+  { icon: "Upload", title: "Upload Any Document", description: "PDFs, DOCX, TXT, web pages — drag and drop to build your knowledge base." },
+  { icon: "BrainCircuit", title: "AI Processing", description: "Automatic chunking, embedding, and indexing optimized for your content." },
+  { icon: "MessageSquare", title: "Smart Chat Interface", description: "Ask questions and get instant answers with source citations." },
+  { icon: "FileSearch", title: "Source Verification", description: "Every answer includes citations, confidence scores, and grounding checks." },
+]
+
+export const houseCTA = {
+  headline: "Ready To Build An AI Assistant Your Team Can Trust?",
+  subheadline: "Upload your first document and get a working AI assistant in under 5 minutes. No code required.",
+}
 
 export const botConfigFields = [
   { field: "Bot Name", type: "text", description: "What should your AI assistant be called?" },

@@ -8,8 +8,7 @@ import { Card } from "@/components/ui/card"
 import { HeroSection } from "@/components/marketing/hero-section"
 import { SiteShell } from "@/components/marketing/site-shell"
 import { heroContent, demoSteps, demoQuestions, beforeAfter } from "@/data/content"
-
-const fadeInUp = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.5 } }
+import { fadeInUp } from "@/lib/animations"
 
 const stepIcons: Record<string, React.ElementType> = { Upload, BrainCircuit, MessageSquare, CheckCircle2 }
 
@@ -20,16 +19,17 @@ export default function DemoPage() {
 
       <section className="py-20 md:py-28">
         <div className="container-page">
-          <motion.div className="text-center max-w-2xl mx-auto mb-16" {...fadeInUp}>
+          <motion.div className="text-center max-w-2xl mx-auto mb-14" {...fadeInUp}>
+            <div className="section-label">Walkthrough</div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">How It Works In 4 Steps</h2>
-            <p className="mt-4 text-lg text-muted">See exactly how KnowledgeOS transforms your knowledge into trusted AI answers.</p>
+            <p className="mt-4 text-muted leading-relaxed">See exactly how KnowledgeOS transforms your knowledge into trusted AI answers.</p>
           </motion.div>
-          <div className="flex flex-col gap-8 max-w-3xl mx-auto">
+          <div className="flex flex-col gap-6 max-w-3xl mx-auto">
             {demoSteps.map((step, i) => {
               const Icon = stepIcons[step.visual] || FileText
               return (
                 <motion.div key={step.step} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.12 }}>
-                  <Card className="p-6 md:p-8">
+                  <Card className="p-6 md:p-8 hover:shadow-md transition-all">
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 rounded-xl bg-primary-light flex items-center justify-center shrink-0">
                         <Icon className="w-6 h-6 text-primary" />
@@ -50,16 +50,17 @@ export default function DemoPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28 bg-card border-y border-border">
+      <section className="py-20 md:py-28 bg-gray-50/60 border-y border-border">
         <div className="container-page">
-          <motion.div className="text-center max-w-2xl mx-auto mb-16" {...fadeInUp}>
+          <motion.div className="text-center max-w-2xl mx-auto mb-14" {...fadeInUp}>
+            <div className="section-label">Sample Q&A</div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">See The Results</h2>
-            <p className="mt-4 text-lg text-muted">Every answer is backed by source citations, confidence scores, and grounding verification.</p>
+            <p className="mt-4 text-muted leading-relaxed">Every answer is backed by source citations, confidence scores, and grounding verification.</p>
           </motion.div>
-          <div className="max-w-3xl mx-auto space-y-6">
+          <div className="max-w-3xl mx-auto space-y-5">
             {demoQuestions.map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }}>
-                <Card className="p-6">
+                <Card className="p-6 hover:shadow-sm transition-all">
                   <div className="mb-4">
                     <div className="text-xs font-semibold text-muted uppercase tracking-wider mb-2">Question</div>
                     <div className="text-foreground font-medium">&ldquo;{item.q}&rdquo;</div>
@@ -88,9 +89,10 @@ export default function DemoPage() {
 
       <section className="py-20 md:py-28">
         <div className="container-page">
-          <motion.div className="text-center max-w-2xl mx-auto mb-16" {...fadeInUp}>
+          <motion.div className="text-center max-w-2xl mx-auto mb-14" {...fadeInUp}>
+            <div className="section-label">Comparison</div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Before vs After</h2>
-            <p className="mt-4 text-lg text-muted">See the difference KnowledgeOS makes in how your organization accesses and uses knowledge.</p>
+            <p className="mt-4 text-muted leading-relaxed">See the difference KnowledgeOS makes in how your organization accesses and uses knowledge.</p>
           </motion.div>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
@@ -129,21 +131,21 @@ export default function DemoPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28 bg-primary-dark text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary-dark pointer-events-none" />
+      <section className="py-20 md:py-28 bg-[#0f172a] text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/10 pointer-events-none" />
         <div className="container-page relative z-10 text-center">
           <motion.h2 className="text-3xl md:text-4xl font-bold tracking-tight" {...fadeInUp}>
             Build Your Own AI Assistant
           </motion.h2>
-          <motion.p className="mt-4 text-lg text-white/80 max-w-xl mx-auto" {...fadeInUp}>
+          <motion.p className="mt-4 text-lg text-white/60 max-w-xl mx-auto" {...fadeInUp}>
             Stop watching demos. Start building. Upload your knowledge and create your AI assistant in minutes.
           </motion.p>
           <motion.div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4" {...fadeInUp}>
-            <Button variant="secondary" size="lg" asChild>
+            <Button size="lg" className="bg-white text-[#0f172a] hover:bg-white/90" asChild>
               <Link href="/build-your-bot">Build Your Own Bot <ArrowRight className="w-4 h-4" /></Link>
             </Button>
             <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10" asChild>
-              <Link href="#contact">Contact Us</Link>
+              <Link href="mailto:sales@knowledgeos.com">Contact Us</Link>
             </Button>
           </motion.div>
         </div>
