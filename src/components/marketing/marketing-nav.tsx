@@ -61,7 +61,7 @@ export function MarketingNav() {
 
         <div className="hidden md:flex items-center gap-3">
           <Button variant="primary" size="md" asChild>
-            <Link href="/build-your-bot">
+            <Link href="/lab/builder">
               Build Your Bot
               <ArrowRight className="w-4 h-4" />
             </Link>
@@ -103,7 +103,7 @@ export function MarketingNav() {
               ))}
               <div className="pt-3 border-t border-border mt-2">
                 <Button variant="primary" size="md" className="w-full" asChild>
-                  <Link href="/build-your-bot">
+                  <Link href="/lab/builder">
                     Build Your Bot
                     <ArrowRight className="w-4 h-4" />
                   </Link>

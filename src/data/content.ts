@@ -16,7 +16,7 @@ export const heroContent = {
   home: {
     headline: "Your AI Is Only As Good As The Knowledge Behind It",
     subheadline: "Build AI assistants powered by your own knowledge, documents, policies, and expertise. Provide trusted answers backed by real sources.",
-    cta: { primary: { label: "Build Your Bot", href: "/build-your-bot" }, secondary: { label: "Watch Demo", href: "/demo" } },
+    cta: { primary: { label: "Build Your Bot", href: "/lab/builder" }, secondary: { label: "Watch Demo", href: "/demo" } },
   },
   product: {
     headline: "Build Trusted AI Assistants From Your Knowledge",
@@ -26,12 +26,12 @@ export const heroContent = {
   solutions: {
     headline: "One Platform. Multiple Use Cases.",
     subheadline: "From customer support to compliance, KnowledgeOS powers AI assistants across every department.",
-    cta: { primary: { label: "See Demo", href: "/demo" }, secondary: { label: "Build Your Bot", href: "/build-your-bot" } },
+    cta: { primary: { label: "See Demo", href: "/demo" }, secondary: { label: "Build Your Bot", href: "/lab/builder" } },
   },
   demo: {
     headline: "See KnowledgeOS In Action",
     subheadline: "Watch how enterprises transform their knowledge into trusted, source-backed AI assistants.",
-    cta: { primary: { label: "Build Your Own Bot", href: "/build-your-bot" }, secondary: { label: "Contact Us", href: "#contact" } },
+    cta: { primary: { label: "Build Your Own Bot", href: "/lab/builder" }, secondary: { label: "Contact Us", href: "#contact" } },
   },
   buildBot: {
     headline: "Build Your AI Assistant In Minutes",
@@ -41,7 +41,7 @@ export const heroContent = {
   pricing: {
     headline: "Simple, Transparent Pricing",
     subheadline: "Start free, scale as you grow. No hidden fees, no surprise charges.",
-    cta: { primary: { label: "Build Your Bot", href: "/build-your-bot" }, secondary: { label: "Contact Sales", href: "#contact" } },
+    cta: { primary: { label: "Build Your Bot", href: "/lab/builder" }, secondary: { label: "Contact Sales", href: "#contact" } },
   },
 }
 

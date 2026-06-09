@@ -9,7 +9,7 @@ const footerLinks = {
     { label: "Features", href: "/product" },
     { label: "Pricing", href: "/pricing" },
     { label: "Demo", href: "/demo" },
-    { label: "Build Your Bot", href: "/build-your-bot" },
+    { label: "Build Your Bot", href: "/lab/builder" },
   ],
   Solutions: [
     { label: "Customer Support", href: "/solutions" },

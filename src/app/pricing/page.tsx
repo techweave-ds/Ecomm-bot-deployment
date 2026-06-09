@@ -51,7 +51,7 @@ export default function PricingPage() {
                     ))}
                   </ul>
                   <Button variant={plan.highlighted ? "primary" : "outline"} size="lg" className="mt-8 w-full" asChild>
-                    <Link href="/build-your-bot">{plan.cta}</Link>
+                    <Link href="/lab/builder">{plan.cta}</Link>
                   </Button>
                 </Card>
               </motion.div>
@@ -151,7 +151,7 @@ export default function PricingPage() {
           </motion.p>
           <motion.div className="mt-8" {...fadeInUp}>
             <Button variant="secondary" size="lg" asChild>
-              <Link href="/build-your-bot">Build Your Bot <ArrowRight className="w-4 h-4" /></Link>
+              <Link href="/lab/builder">Build Your Bot <ArrowRight className="w-4 h-4" /></Link>
             </Button>
           </motion.div>
         </div>
