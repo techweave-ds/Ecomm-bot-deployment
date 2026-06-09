@@ -146,7 +146,7 @@ export default function DocumentsPage() {
                 <tbody>
                   {allDocs.map((doc, i) => (
                     <motion.tr key={doc.name} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.02 }}
-                      className="border-b border-border last:border-0 hover:bg-gray-50/50 cursor-pointer transition-colors"
+                      className="border-b border-border last:border-0 hover:bg-secondary/50 cursor-pointer transition-colors"
                       onClick={() => setSelectedDoc(doc)}
                     >
                       <td className="px-6 py-3">
@@ -221,7 +221,7 @@ export default function DocumentsPage() {
                     </CardDescription>
                   </div>
                 </div>
-                <button onClick={() => setSelectedDoc(null)} className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors">
+                <button onClick={() => setSelectedDoc(null)} className="p-1.5 hover:bg-secondary rounded-lg transition-colors">
                   <X className="w-5 h-5" />
                 </button>
               </div>
@@ -338,7 +338,7 @@ export default function DocumentsPage() {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle>Upload Document</CardTitle>
-                <button onClick={() => setUploadModal(false)} className="p-1 hover:bg-gray-100 rounded-lg">
+                <button onClick={() => setUploadModal(false)} className="p-1 hover:bg-secondary rounded-lg">
                   <X className="w-5 h-5" />
                 </button>
               </div>

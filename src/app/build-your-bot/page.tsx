@@ -326,7 +326,7 @@ export default function BuildBotPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 border-b border-border bg-card/90 dark:bg-gray-900/90 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
         <div className="container-page flex items-center justify-between h-14">
           <Link href="/" className="flex items-center gap-2 font-semibold text-sm">
             <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
@@ -337,7 +337,7 @@ export default function BuildBotPage() {
           </Link>
           <div className="flex items-center gap-2">
             <button onClick={() => setShowHelp(true)}
-              className="text-xs text-muted hover:text-foreground transition-colors flex items-center gap-1 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+              className="text-xs text-muted hover:text-foreground transition-colors flex items-center gap-1 p-2 rounded-lg hover:bg-secondary">
               <HelpCircle className="w-3.5 h-3.5" /> Help
             </button>
             <Link href="/" className="text-xs text-muted hover:text-foreground transition-colors flex items-center gap-1">
@@ -352,7 +352,7 @@ export default function BuildBotPage() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-card dark:bg-gray-800 rounded-2xl shadow-xl border border-border max-w-lg w-full max-h-[90vh] overflow-y-auto">
+              className="bg-card rounded-2xl shadow-xl border border-border max-w-lg w-full max-h-[90vh] overflow-y-auto">
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 rounded-xl bg-primary-light flex items-center justify-center">
@@ -367,7 +367,7 @@ export default function BuildBotPage() {
                   {helpSteps.map((step, i) => {
                     const Icon = step.icon
                     return (
-                      <div key={i} className="flex gap-3 p-3 rounded-xl bg-gray-50 dark:bg-gray-800/80 border border-border">
+                      <div key={i} className="flex gap-3 p-3 rounded-xl bg-surface-2 border border-border">
                         <div className="w-8 h-8 rounded-lg bg-primary-light flex items-center justify-center shrink-0">
                           <Icon className="w-4 h-4 text-primary" />
                         </div>
@@ -379,7 +379,7 @@ export default function BuildBotPage() {
                     )
                   })}
                 </div>
-                <div className="mt-5 p-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 flex gap-2 text-xs text-blue-700 dark:text-blue-400">
+                <div className="mt-5 p-3 rounded-xl bg-primary-light/30 border border-primary/20 flex gap-2 text-xs text-primary">
                   <Shield className="w-4 h-4 shrink-0 mt-0.5" />
                   <div>
                     <strong>Privacy:</strong> Everything runs in your browser. Your documents and API key never leave your machine. No data stored on servers.
@@ -399,7 +399,7 @@ export default function BuildBotPage() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-card dark:bg-gray-800 rounded-2xl shadow-xl border border-border max-w-lg w-full max-h-[90vh] overflow-y-auto">
+              className="bg-card rounded-2xl shadow-xl border border-border max-w-lg w-full max-h-[90vh] overflow-y-auto">
               <div className="p-6">
                 <div className="flex items-center justify-between mb-5">
                   <div className="flex items-center gap-3">
@@ -411,7 +411,7 @@ export default function BuildBotPage() {
                       <p className="text-sm text-muted">Your guide to building an AI assistant</p>
                     </div>
                   </div>
-                  <button onClick={() => setShowHelp(false)} className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                  <button onClick={() => setShowHelp(false)} className="p-1.5 rounded-lg hover:bg-secondary">
                     <X className="w-4 h-4" />
                   </button>
                 </div>
@@ -419,7 +419,7 @@ export default function BuildBotPage() {
                   {helpSteps.map((step, i) => {
                     const Icon = step.icon
                     return (
-                      <div key={i} className="flex gap-3 p-3 rounded-xl bg-gray-50 dark:bg-gray-800/80 border border-border">
+                      <div key={i} className="flex gap-3 p-3 rounded-xl bg-surface-2 border border-border">
                         <div className="w-8 h-8 rounded-lg bg-primary-light flex items-center justify-center shrink-0">
                           <Icon className="w-4 h-4 text-primary" />
                         </div>
@@ -482,13 +482,13 @@ export default function BuildBotPage() {
           {showSteps && (
             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}
               className="mb-5 overflow-hidden">
-              <div className="p-4 rounded-xl bg-gradient-to-r from-blue-50 to-emerald-50 dark:from-blue-900/20 dark:to-emerald-900/20 border border-blue-200 dark:border-blue-800">
+              <div className="p-4 rounded-xl bg-surface-1 border border-border">
                 <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-blue-800 dark:text-blue-300">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
                     <Info className="w-4 h-4" /> How to build your assistant
                   </div>
-                  <button onClick={() => setShowSteps(false)} className="p-1 rounded hover:bg-white/50 dark:hover:bg-white/10 transition-colors">
-                    <X className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                  <button onClick={() => setShowSteps(false)} className="p-1 rounded hover:bg-secondary transition-colors">
+                    <X className="w-3.5 h-3.5 text-muted" />
                   </button>
                 </div>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -500,7 +500,7 @@ export default function BuildBotPage() {
                   ].map((item) => {
                     const Icon = item.icon
                     return (
-                      <div key={item.step} className="flex items-start gap-2.5 p-2.5 rounded-lg bg-white/70 dark:bg-white/10 border border-blue-100 dark:border-blue-800">
+                      <div key={item.step} className="flex items-start gap-2.5 p-2.5 rounded-lg bg-surface-2 border border-border">
                         <div className="w-7 h-7 rounded-lg bg-primary-light flex items-center justify-center shrink-0">
                           <Icon className="w-3.5 h-3.5 text-primary" />
                         </div>
@@ -520,7 +520,7 @@ export default function BuildBotPage() {
         <AnimatePresence>
           {error && (
             <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-              className="mb-4 flex items-center gap-2 p-3 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-sm text-red-700 dark:text-red-400">
+              className="mb-4 flex items-center gap-2 p-3 rounded-xl bg-destructive-light/30 border border-destructive/20 text-sm text-destructive-foreground">
               <AlertCircle className="w-4 h-4 shrink-0" />
               {error}
               <button onClick={() => setError("")} className="ml-auto"><X className="w-4 h-4" /></button>
@@ -551,7 +551,7 @@ export default function BuildBotPage() {
                   </button>
                 </div>
                 <Button onClick={saveKey} size="sm" className="w-full" variant={keySaved ? "outline" : "primary"}>
-                  {keySaved ? <><CheckCircle className="w-3.5 h-3.5 text-emerald-600" /> Key Saved</> : "Save Key"}
+                  {keySaved ? <><CheckCircle className="w-3.5 h-3.5 text-success-foreground" /> Key Saved</> : "Save Key"}
                 </Button>
                 <p className="text-[11px] text-muted leading-relaxed">
                   Get a free key at{" "}
@@ -581,7 +581,7 @@ export default function BuildBotPage() {
                 <input ref={fileRef} type="file" accept=".pdf" className="hidden" onChange={e => e.target.files?.[0] && handleFileSelect(e.target.files[0])} />
 
                 {file && (
-                  <div className="flex items-center gap-2 p-2 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-700 dark:text-emerald-400">
+                  <div className="flex items-center gap-2 p-2 rounded-lg bg-success-light/30 border border-success/20 text-xs text-success-foreground">
                     <FileText className="w-3.5 h-3.5 shrink-0" />
                     <span className="truncate flex-1">{file.name}</span>
                     <button onClick={() => { setFile(null); setKbReady(false); setKbChunks([]) }}><X className="w-3.5 h-3.5" /></button>
@@ -594,7 +594,7 @@ export default function BuildBotPage() {
                       <span className="text-muted">{processStage}</span>
                       <span className="font-medium">{processProgress}%</span>
                     </div>
-                    <div className="h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div className="h-1.5 bg-surface-2 rounded-full overflow-hidden">
                       <motion.div
                         className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
                         animate={{ width: `${processProgress}%` }}
@@ -612,7 +612,7 @@ export default function BuildBotPage() {
                   variant={kbReady ? "outline" : "secondary"}
                 >
                   {processing ? <><Loader2 className="w-3.5 h-3.5 animate-spin" /> Processing...</> :
-                    kbReady ? <><CheckCircle className="w-3.5 h-3.5 text-emerald-600" /> {kbChunks.length} chunks indexed</> :
+                    kbReady ? <><CheckCircle className="w-3.5 h-3.5 text-success-foreground" /> {kbChunks.length} chunks indexed</> :
                       <><Zap className="w-3.5 h-3.5" /> Process Document</>}
                 </Button>
               </CardContent>
@@ -648,11 +648,11 @@ export default function BuildBotPage() {
                 <div className="grid grid-cols-2 gap-2">
                   {[
                     { label: "Queries", value: stats.queries, color: "text-primary" },
-                    { label: "Resolved", value: stats.resolved, color: "text-emerald-600" },
-                    { label: "Chunks", value: kbChunks.length, color: "text-amber-600" },
-                    { label: "Logs", value: logs.length, color: "text-purple-600" },
+                    { label: "Resolved", value: stats.resolved, color: "text-success-foreground" },
+                    { label: "Chunks", value: kbChunks.length, color: "text-warning-foreground" },
+                    { label: "Logs", value: logs.length, color: "text-primary" },
                   ].map(s => (
-                    <div key={s.label} className="p-2.5 rounded-lg bg-gray-50 dark:bg-gray-800 border border-border text-center">
+                    <div key={s.label} className="p-2.5 rounded-lg bg-surface-2 border border-border text-center">
                       <p className={`text-lg font-bold ${s.color}`}>{s.value}</p>
                       <p className="text-[10px] text-muted uppercase tracking-wide">{s.label}</p>
                     </div>
@@ -723,7 +723,7 @@ export default function BuildBotPage() {
                               {msg.role === "user" ? <User className="w-3.5 h-3.5" /> : <Bot className="w-3.5 h-3.5" />}
                             </div>
                             <div className={`max-w-[75%] ${msg.role === "user" ? "items-end" : "items-start"} flex flex-col gap-1`}>
-                              <div className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${msg.role === "user" ? "bg-primary text-white rounded-tr-sm" : "bg-gray-50 dark:bg-gray-800 border border-border rounded-tl-sm"}`}>
+                              <div className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${msg.role === "user" ? "bg-primary text-white rounded-tr-sm" : "bg-surface-2 border border-border rounded-tl-sm"}`}>
                                 {msg.content.replace(/\*\*(.*?)\*\*/g, "$1")}
                               </div>
                               <div className="flex items-center gap-2 px-1">
@@ -742,7 +742,7 @@ export default function BuildBotPage() {
                             <div className="w-7 h-7 rounded-full bg-accent/15 flex items-center justify-center">
                               <Bot className="w-3.5 h-3.5 text-accent" />
                             </div>
-                            <div className="bg-gray-50 dark:bg-gray-800 border border-border rounded-2xl rounded-tl-sm px-4 py-3 flex gap-1 items-center">
+                            <div className="bg-surface-2 border border-border rounded-2xl rounded-tl-sm px-4 py-3 flex gap-1 items-center">
                               {[0, 1, 2].map(i => (
                                 <motion.div key={i} className="w-1.5 h-1.5 rounded-full bg-primary"
                                   animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.8, delay: i * 0.15 }} />
@@ -828,7 +828,7 @@ export default function BuildBotPage() {
           </div>
         </div>
 
-        <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-gradient-to-r from-blue-50 to-emerald-50 dark:from-blue-900/20 dark:to-emerald-900/20 border border-blue-200 dark:border-blue-800 text-sm text-blue-700 dark:text-blue-400">
+        <div className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-surface-1 border border-border text-sm text-muted">
           <Info className="w-4 h-4 mt-0.5 shrink-0" />
           <div>
             <strong>100% Free Stack:</strong> Groq free tier (14,400 req/day) + PDF.js (browser) + TF-IDF search (client-side) + hosted on Cloudflare Pages. No backend, no database, no monthly cost.

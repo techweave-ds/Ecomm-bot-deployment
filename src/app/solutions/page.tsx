@@ -66,7 +66,7 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28 bg-gray-50/60 dark:bg-gray-900/40 border-y border-border">
+      <section className="py-20 md:py-28 bg-surface-1 border-y border-border">
         <div className="container-page">
           <motion.div className="text-center max-w-2xl mx-auto mb-14" {...fadeInUp}>
             <div className="section-label">Industries</div>
@@ -92,7 +92,7 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28 bg-[#0f172a] text-white relative overflow-hidden">
+      <section className="cta-section py-20 md:py-28">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/10 pointer-events-none" />
         <div className="container-page relative z-10 text-center">
           <motion.h2 className="text-3xl md:text-4xl font-bold tracking-tight" {...fadeInUp}>
@@ -102,7 +102,7 @@ export default function SolutionsPage() {
             Build your own AI assistant powered by your knowledge.
           </motion.p>
           <motion.div className="mt-8" {...fadeInUp}>
-            <Button size="lg" className="bg-white text-[#0f172a] hover:bg-white/90" asChild>
+            <Button size="lg" className="bg-white text-[#0f172a] hover:bg-white/90 shadow-md" asChild>
               <Link href="/build-your-bot">Build Your Bot <ArrowRight className="w-4 h-4" /></Link>
             </Button>
           </motion.div>

@@ -14,9 +14,9 @@ const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
           "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
           {
             "bg-primary-light text-primary": variant === "default",
-            "bg-emerald-50 text-emerald-700": variant === "success",
-            "bg-amber-50 text-amber-700": variant === "warning",
-            "bg-red-50 text-red-700": variant === "danger",
+            "bg-success-light text-success-foreground": variant === "success",
+            "bg-warning-light text-warning-foreground": variant === "warning",
+            "bg-destructive-light text-destructive-foreground": variant === "danger",
             "border border-border text-muted": variant === "outline",
           },
           className,

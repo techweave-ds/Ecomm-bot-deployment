@@ -123,7 +123,7 @@ export default function InsightsPage() {
                     <span className="font-medium">{topic.topic}</span>
                     <span className="text-muted">{topic.count.toLocaleString()} questions</span>
                   </div>
-                  <div className="w-full h-2 rounded-full bg-gray-100">
+                  <div className="w-full h-2 rounded-full bg-surface-2">
                     <motion.div initial={{ width: 0 }} animate={{ width: `${topic.percentage}%` }} transition={{ duration: 0.8, delay: i * 0.1 }} className="h-full rounded-full bg-gradient-to-r from-primary to-accent" />
                   </div>
                 </div>
@@ -148,7 +148,7 @@ export default function InsightsPage() {
                     <span className="font-medium">{doc.name}</span>
                     <span className="text-muted">{doc.retrievals.toLocaleString()} retrievals</span>
                   </div>
-                  <div className="w-full h-2 rounded-full bg-gray-100">
+                  <div className="w-full h-2 rounded-full bg-surface-2">
                     <motion.div initial={{ width: 0 }} animate={{ width: `${doc.percentage}%` }} transition={{ duration: 0.8, delay: i * 0.1 }} className="h-full rounded-full bg-gradient-to-r from-accent to-primary" />
                   </div>
                 </div>
@@ -250,7 +250,7 @@ export default function InsightsPage() {
                 <div key={item.label} className="flex items-center justify-between text-sm">
                   <span>{item.label}</span>
                   <div className="flex items-center gap-2">
-                    <div className="w-24 h-2 rounded-full bg-gray-100">
+                    <div className="w-24 h-2 rounded-full bg-surface-2">
                       <div className={`h-full rounded-full ${item.color}`} style={{ width: `${(item.count / knowledgeGapsEngine.gaps.length) * 100}%` }} />
                     </div>
                     <span className="text-xs font-medium w-4 text-right">{item.count}</span>
@@ -277,7 +277,7 @@ export default function InsightsPage() {
                     <span className="font-medium">{source.source}</span>
                     <span className="text-muted">{source.utilization}%</span>
                   </div>
-                  <div className="w-full h-2.5 rounded-full bg-gray-100">
+                  <div className="w-full h-2.5 rounded-full bg-surface-2">
                     <motion.div initial={{ width: 0 }} animate={{ width: `${source.utilization}%` }} transition={{ duration: 0.8 }} className="h-full rounded-full bg-gradient-to-r from-primary via-accent to-amber-400" />
                   </div>
                 </div>

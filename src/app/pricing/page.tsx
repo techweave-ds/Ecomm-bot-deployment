@@ -32,7 +32,7 @@ export default function PricingPage() {
           </motion.div>
         </div>
       </section>
-      <section className="py-20 md:py-28 bg-[#0f172a] text-white relative overflow-hidden">
+      <section className="cta-section py-20 md:py-28">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/10 pointer-events-none" />
         <div className="container-page relative z-10 text-center">
           <motion.h2 className="text-3xl md:text-4xl font-bold tracking-tight" {...fadeInUp}>
@@ -42,7 +42,7 @@ export default function PricingPage() {
             Try the builder and see how KnowledgeOS works with your own documents.
           </motion.p>
           <motion.div className="mt-8" {...fadeInUp}>
-            <Button size="lg" className="bg-white text-[#0f172a] hover:bg-white/90" asChild>
+            <Button size="lg" className="bg-white text-[#0f172a] hover:bg-white/90 shadow-md" asChild>
               <a href="/build-your-bot">Build Your Bot <ArrowRight className="w-4 h-4" /></a>
             </Button>
           </motion.div>

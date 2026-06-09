@@ -58,7 +58,7 @@ export default function DashboardPage() {
                     <span className="text-sm font-medium">{item.label}</span>
                     <span className={`text-lg font-bold ${color}`}>{item.value}%</span>
                   </div>
-                  <div className="w-full h-2 rounded-full bg-gray-100 mb-2">
+                  <div className="w-full h-2 rounded-full bg-surface-2 mb-2">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${item.value}%` }}
@@ -125,7 +125,7 @@ export default function DashboardPage() {
                       <span>Index: {h.indexHealth}%</span>
                       <span>Retrieval: {h.retrievalPerformance}%</span>
                     </div>
-                    <div className="w-full h-1.5 rounded-full bg-gray-100">
+                    <div className="w-full h-1.5 rounded-full bg-surface-2">
                       <motion.div initial={{ width: 0 }} animate={{ width: `${h.readiness}%` }} className="h-full rounded-full bg-gradient-to-r from-primary to-accent" />
                     </div>
                   </div>
@@ -193,7 +193,7 @@ export default function DashboardPage() {
                     <span className="font-medium">{doc.name}</span>
                     <span className="text-muted">{doc.retrievals.toLocaleString()} retrievals</span>
                   </div>
-                  <div className="w-full h-1.5 rounded-full bg-gray-100">
+                  <div className="w-full h-1.5 rounded-full bg-surface-2">
                     <motion.div initial={{ width: 0 }} animate={{ width: `${(doc.retrievals / 1240) * 100}%` }} className="h-full rounded-full bg-gradient-to-r from-primary to-accent" />
                   </div>
                 </div>
@@ -221,7 +221,7 @@ export default function DashboardPage() {
                     </span>
                     <span className="text-muted">{chunk.retrievals.toLocaleString()}</span>
                   </div>
-                  <div className="w-full h-1.5 rounded-full bg-gray-100">
+                  <div className="w-full h-1.5 rounded-full bg-surface-2">
                     <motion.div initial={{ width: 0 }} animate={{ width: `${(chunk.retrievals / Math.max(...dashboardData.mostReferencedChunks.map(c => c.retrievals))) * 100}%` }} className="h-full rounded-full bg-gradient-to-r from-accent to-primary" />
                   </div>
                 </div>

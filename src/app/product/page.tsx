@@ -70,7 +70,7 @@ export default function ProductPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28 bg-gray-50/60 dark:bg-gray-900/40 border-y border-border">
+      <section className="py-20 md:py-28 bg-surface-1 border-y border-border">
         <div className="container-page">
           <motion.div className="text-center max-w-2xl mx-auto mb-14" {...fadeInUp}>
             <div className="section-label">Step-by-Step</div>
@@ -131,7 +131,7 @@ export default function ProductPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28 bg-gray-50/60 dark:bg-gray-900/40 border-y border-border">
+      <section className="py-20 md:py-28 bg-surface-1 border-y border-border">
         <div className="container-page">
           <motion.div className="text-center max-w-2xl mx-auto mb-14" {...fadeInUp}>
             <div className="section-label">Deployment</div>
@@ -177,7 +177,7 @@ export default function ProductPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28 bg-[#0f172a] text-white relative overflow-hidden">
+      <section className="cta-section py-20 md:py-28">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/10 pointer-events-none" />
         <div className="container-page relative z-10 text-center">
           <motion.h2 className="text-3xl md:text-4xl font-bold tracking-tight" {...fadeInUp}>
@@ -187,10 +187,10 @@ export default function ProductPage() {
             Upload your documents and build a source-backed AI assistant in minutes.
           </motion.p>
           <motion.div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4" {...fadeInUp}>
-            <Button size="lg" className="bg-white text-[#0f172a] hover:bg-white/90" asChild>
+            <Button size="lg" className="bg-white text-[#0f172a] hover:bg-white/90 shadow-md" asChild>
               <Link href="/build-your-bot">Build Your Bot <ArrowRight className="w-4 h-4" /></Link>
             </Button>
-            <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10" asChild>
+            <Button variant="outline" size="lg" className="cta-section-outline" asChild>
               <Link href="/demo">Watch Demo</Link>
             </Button>
           </motion.div>

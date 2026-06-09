@@ -79,15 +79,15 @@ export function ChunkExplorer({ chunks = sampleChunks as ChunkData[], className 
                     >
                       <div className="mt-3 pt-3 border-t border-border space-y-3">
                         <div className="grid grid-cols-3 gap-2">
-                          <div className="p-2 rounded-lg bg-gray-50 text-center">
+                          <div className="p-2 rounded-lg bg-surface-1 text-center">
                             <p className="text-xs font-bold">{chunk.retrievals}</p>
                             <p className="text-[10px] text-muted">Retrievals</p>
                           </div>
-                          <div className="p-2 rounded-lg bg-gray-50 text-center">
+                          <div className="p-2 rounded-lg bg-surface-1 text-center">
                             <p className="text-xs font-bold">{chunk.avgSimilarity}%</p>
                             <p className="text-[10px] text-muted">Avg Similarity</p>
                           </div>
-                          <div className="p-2 rounded-lg bg-gray-50 text-center">
+                          <div className="p-2 rounded-lg bg-surface-1 text-center">
                             <p className="text-xs font-bold">{chunk.tokens}</p>
                             <p className="text-[10px] text-muted">Tokens</p>
                           </div>

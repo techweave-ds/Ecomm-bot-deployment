@@ -110,7 +110,7 @@ function AnimatedJourney({ data }: { data: typeof sampleQueryTrace }) {
               {step.detail && (
                 <details className="mt-0.5">
                   <summary className="text-[10px] text-primary cursor-pointer hover:underline">Details</summary>
-                  <pre className="mt-1 p-2 rounded bg-gray-50 border text-[10px] font-mono text-muted whitespace-pre-wrap">{step.detail}</pre>
+                  <pre className="mt-1 p-2 rounded bg-surface-1 border text-[10px] font-mono text-muted whitespace-pre-wrap">{step.detail}</pre>
                 </details>
               )}
             </div>
@@ -294,7 +294,7 @@ Question: ${q}` : q
                   <button
                     key={key}
                     onClick={() => { setActiveKb(key); setViewState("empty") }}
-                    className={`w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-lg text-left transition-colors ${activeKb === key ? "bg-primary-light text-primary" : "hover:bg-gray-50"}`}
+                    className={`w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-lg text-left transition-colors ${activeKb === key ? "bg-primary-light text-primary" : "hover:bg-secondary"}`}
                   >
                     <div className={`w-2 h-2 rounded-full shrink-0 ${accentColors[key] || "bg-primary"}`} />
                     <span className="truncate">{k.name}</span>
@@ -557,7 +557,7 @@ Question: ${q}` : q
                             exit={{ height: 0, opacity: 0 }}
                             className="overflow-hidden mt-3"
                           >
-                            <div className="p-4 rounded-xl border border-border bg-gray-50/50">
+                            <div className="p-4 rounded-xl border border-border bg-surface-1/50">
                               <AnimatedJourney data={trace} />
                             </div>
                           </motion.div>

@@ -41,7 +41,7 @@ export function Footer() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-[#0f172a] text-white py-20 md:py-24">
+      <section className="cta-section py-20 md:py-24">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-accent/10 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
           <motion.div {...fadeInUp}>
@@ -52,13 +52,13 @@ export function Footer() {
               Upload your first document and get a working AI assistant in under 5 minutes. No code required.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="bg-white text-[#0f172a] hover:bg-white/90" asChild>
+              <Button size="lg" className="bg-white text-[#0f172a] hover:bg-white/90 shadow-md" asChild>
                 <Link href="/build-your-bot">
                   Build Your Bot
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10" asChild>
+              <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10" asChild>
                 <Link href="/demo">
                   <Play className="w-4 h-4" />
                   Watch Demo
@@ -69,7 +69,7 @@ export function Footer() {
         </div>
       </section>
 
-      <footer className="border-t border-border bg-card dark:bg-gray-900">
+      <footer className="border-t border-border bg-card">
         <div className="container-page py-14">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
             <div className="col-span-2 md:col-span-1">

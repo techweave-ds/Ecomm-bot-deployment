@@ -42,7 +42,7 @@ function MiniBar({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex items-center gap-2 text-[11px]">
       <span className="w-14 text-muted text-right">{label}</span>
-      <div className="flex-1 h-2 rounded-full bg-gray-100 min-w-[60px]">
+      <div className="flex-1 h-2 rounded-full bg-surface-2 min-w-[60px]">
         <div className={`h-full rounded-full ${color} transition-all duration-700`} style={{ width: `${value}%` }} />
       </div>
       <span className={`w-8 text-right font-medium ${value >= 90 ? "text-accent" : value >= 75 ? "text-primary" : "text-warning"}`}>{value}%</span>

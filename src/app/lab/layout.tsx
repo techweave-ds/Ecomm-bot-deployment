@@ -55,7 +55,7 @@ export default function LabLayout({ children }: { children: React.ReactNode }) {
                     "flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors",
                     isActive
                       ? "bg-primary-light text-primary"
-                      : "text-muted hover:text-foreground hover:bg-gray-100",
+                      : "text-muted hover:text-foreground hover:bg-secondary",
                   )}
                 >
                   <item.icon className="w-4 h-4" />

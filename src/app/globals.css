@@ -5,43 +5,88 @@
 @theme inline {
   --color-background: #fafbfc;
   --color-foreground: #0f172a;
-  --color-primary: #2563eb;
-  --color-primary-dark: #1d4ed8;
-  --color-primary-light: #dbeafe;
-  --color-accent: #14b8a6;
-  --color-accent-light: #ccfbf1;
-  --color-border: #e2e8f0;
   --color-muted: #64748b;
   --color-card: #ffffff;
   --color-card-hover: #f8fafc;
+  --color-card-foreground: #0f172a;
+  --color-border: #e2e8f0;
+  --color-input: #e2e8f0;
+  --color-ring: #2563eb;
+  --color-popover: #ffffff;
+
+  --color-primary: #2563eb;
+  --color-primary-dark: #1d4ed8;
+  --color-primary-light: #dbeafe;
+
+  --color-secondary: #f1f5f9;
+  --color-secondary-foreground: #0f172a;
+
+  --color-accent: #14b8a6;
+  --color-accent-light: #ccfbf1;
+
   --color-success: #10b981;
+  --color-success-light: #d1fae5;
+  --color-success-foreground: #065f46;
+
   --color-warning: #f59e0b;
-  --color-danger: #ef4444;
+  --color-warning-light: #fef3c7;
+  --color-warning-foreground: #92400e;
+
+  --color-destructive: #ef4444;
+  --color-destructive-light: #fee2e2;
+  --color-destructive-foreground: #991b1b;
+
+  --color-surface-1: #f1f5f9;
+  --color-surface-2: #e2e8f0;
+  --color-surface-3: #ffffff;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+.dark {
+  --color-background: #0b0b0e;
+  --color-foreground: #ededee;
+  --color-muted: #8b8b95;
+  --color-card: #141418;
+  --color-card-hover: #1c1c22;
+  --color-card-foreground: #ededee;
+  --color-border: #1e1e24;
+  --color-input: #1e1e24;
+  --color-ring: #3b82f6;
+  --color-popover: #1c1c22;
+
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-primary-light: #1a2a4a;
+
+  --color-secondary: #1e1e24;
+  --color-secondary-foreground: #ededee;
+
+  --color-accent: #14b8a6;
+  --color-accent-light: #0d3d3a;
+
+  --color-success: #10b981;
+  --color-success-light: #064e3b;
+  --color-success-foreground: #6ee7b7;
+
+  --color-warning: #f59e0b;
+  --color-warning-light: #451a03;
+  --color-warning-foreground: #fbbf24;
+
+  --color-destructive: #ef4444;
+  --color-destructive-light: #450a0a;
+  --color-destructive-foreground: #fca5a5;
+
+  --color-surface-1: #121216;
+  --color-surface-2: #18181d;
+  --color-surface-3: #1e1e24;
 }
 
 body {
   background: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-}
-
-.dark {
-  --color-background: #0f172a;
-  --color-foreground: #f1f5f9;
-  --color-primary: #3b82f6;
-  --color-primary-dark: #2563eb;
-  --color-primary-light: #1e3a5f;
-  --color-accent: #14b8a6;
-  --color-accent-light: #134e4a;
-  --color-border: #1e293b;
-  --color-muted: #94a3b8;
-  --color-card: #1e293b;
-  --color-card-hover: #334155;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
 }
 
 @layer base {
@@ -51,12 +96,8 @@ body {
   h1, h2, h3, h4 {
     letter-spacing: -0.02em;
   }
-  h1 {
-    line-height: 1.1;
-  }
-  h2 {
-    line-height: 1.15;
-  }
+  h1 { line-height: 1.1; }
+  h2 { line-height: 1.15; }
 }
 
 @utility container-page {
@@ -103,6 +144,25 @@ body {
   background: var(--color-primary-light);
   color: var(--color-primary);
   margin-bottom: 1.25rem;
+}
+
+@utility cta-dark {
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+@utility cta-section {
+  background: #0f172a;
+  color: white;
+}
+
+@utility cta-section-outline {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+  background: transparent;
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
 }
 
 @utility gradient-glow {

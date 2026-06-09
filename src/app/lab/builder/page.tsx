@@ -413,7 +413,7 @@ export default function BuilderPage() {
                     <span className="text-muted">{processStage}</span>
                     <span className="font-medium">{processProgress}%</span>
                   </div>
-                  <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                  <div className="h-1.5 bg-surface-2 rounded-full overflow-hidden">
                     <motion.div
                       className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
                       animate={{ width: `${processProgress}%` }}
@@ -473,7 +473,7 @@ export default function BuilderPage() {
                   { label: "Chunks", value: kbChunks.length, color: "text-amber-600" },
                   { label: "Logs", value: logs.length, color: "text-purple-600" },
                 ].map(s => (
-                  <div key={s.label} className="p-2.5 rounded-lg bg-gray-50 border border-border text-center">
+                  <div key={s.label} className="p-2.5 rounded-lg bg-surface-1 border border-border text-center">
                     <p className={`text-lg font-bold ${s.color}`}>{s.value}</p>
                     <p className="text-[10px] text-muted uppercase tracking-wide">{s.label}</p>
                   </div>
@@ -547,7 +547,7 @@ export default function BuilderPage() {
                             {msg.role === "user" ? <User className="w-3.5 h-3.5" /> : <Bot className="w-3.5 h-3.5" />}
                           </div>
                           <div className={`max-w-[75%] ${msg.role === "user" ? "items-end" : "items-start"} flex flex-col gap-1`}>
-                            <div className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${msg.role === "user" ? "bg-primary text-white rounded-tr-sm" : "bg-gray-50 border border-border rounded-tl-sm"}`}>
+                            <div className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${msg.role === "user" ? "bg-primary text-white rounded-tr-sm" : "bg-surface-1 border border-border rounded-tl-sm"}`}>
                               {msg.content.replace(/\*\*(.*?)\*\*/g, "$1")}
                             </div>
                             <div className="flex items-center gap-2 px-1">
@@ -566,7 +566,7 @@ export default function BuilderPage() {
                           <div className="w-7 h-7 rounded-full bg-accent/15 flex items-center justify-center">
                             <Bot className="w-3.5 h-3.5 text-accent" />
                           </div>
-                          <div className="bg-gray-50 border border-border rounded-2xl rounded-tl-sm px-4 py-3 flex gap-1 items-center">
+                          <div className="bg-surface-1 border border-border rounded-2xl rounded-tl-sm px-4 py-3 flex gap-1 items-center">
                             {[0, 1, 2].map(i => (
                               <motion.div key={i} className="w-1.5 h-1.5 rounded-full bg-primary"
                                 animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.8, delay: i * 0.15 }} />

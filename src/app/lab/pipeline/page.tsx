@@ -147,7 +147,7 @@ function JourneyStep({ step, isLast }: { step: JourneyStepData; isLast: boolean 
   return (
     <div className="flex items-start gap-4 pb-4 relative group">
       <div className="flex flex-col items-center">
-        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${!isLast ? "bg-gray-100" : "bg-accent/10"}`}>
+        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${!isLast ? "bg-surface-2" : "bg-accent/10"}`}>
           <step.icon className={`w-4 h-4 ${!isLast ? "text-muted" : "text-accent"}`} />
         </div>
         {!isLast && <div className="w-px h-full bg-border mt-1" />}
@@ -163,7 +163,7 @@ function JourneyStep({ step, isLast }: { step: JourneyStepData; isLast: boolean 
             <AnimatePresence>
               {showDetail && (
                 <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                  <div className="mt-2 p-2 rounded-lg bg-gray-50 border border-border">
+                  <div className="mt-2 p-2 rounded-lg bg-surface-1 border border-border">
                     <pre className="text-[10px] text-muted whitespace-pre-wrap break-all font-mono">{step.detail}</pre>
                   </div>
                 </motion.div>
@@ -294,7 +294,7 @@ export default function PipelinePage() {
                         ? "bg-accent text-white shadow-lg shadow-accent/20"
                         : i === activeStep
                           ? "bg-primary text-white shadow-lg shadow-primary/20 scale-110"
-                          : "bg-gray-100 text-muted"
+                          : "bg-surface-2 text-muted"
                     }`}
                   >
                     <step.icon className="w-5 h-5" />

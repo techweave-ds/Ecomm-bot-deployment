@@ -44,7 +44,7 @@ export function CitationViewer({ citations, open, onClose, loading, error }: Cit
               </div>
               <button
                 onClick={onClose}
-                className="flex h-7 w-7 items-center justify-center rounded-lg text-muted hover:bg-gray-100 hover:text-foreground transition-colors"
+                className="flex h-7 w-7 items-center justify-center rounded-lg text-muted hover:bg-secondary hover:text-foreground transition-colors"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -94,7 +94,7 @@ export function CitationViewer({ citations, open, onClose, loading, error }: Cit
                           </div>
                         </div>
 
-                        <div className="rounded-lg bg-gray-50 p-3">
+                        <div className="rounded-lg bg-surface-1 p-3">
                           <p className="text-xs leading-relaxed text-muted">{citation.paragraph}</p>
                         </div>
 
@@ -104,7 +104,7 @@ export function CitationViewer({ citations, open, onClose, loading, error }: Cit
                               <span className="text-[10px] font-medium text-muted">Retrieved Score</span>
                               <span className="text-[10px] font-semibold">{citation.retrievedScore}%</span>
                             </div>
-                            <div className="h-1.5 w-full rounded-full bg-gray-100">
+                            <div className="h-1.5 w-full rounded-full bg-surface-2">
                               <motion.div
                                 initial={{ width: 0 }}
                                 animate={{ width: `${citation.retrievedScore}%` }}
@@ -118,7 +118,7 @@ export function CitationViewer({ citations, open, onClose, loading, error }: Cit
                               <span className="text-[10px] font-medium text-muted">Confidence Score</span>
                               <span className="text-[10px] font-semibold">{citation.confidenceScore}%</span>
                             </div>
-                            <div className="h-1.5 w-full rounded-full bg-gray-100">
+                            <div className="h-1.5 w-full rounded-full bg-surface-2">
                               <motion.div
                                 initial={{ width: 0 }}
                                 animate={{ width: `${citation.confidenceScore}%` }}

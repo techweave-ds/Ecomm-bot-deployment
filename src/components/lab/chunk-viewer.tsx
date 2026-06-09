@@ -55,28 +55,28 @@ export function ChunkViewer({ chunk, open, onClose }: ChunkViewerProps) {
                     <span className="text-sm font-semibold">Document Information</span>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="p-3 rounded-xl bg-gray-50/80">
+                    <div className="p-3 rounded-xl bg-surface-1/80">
                       <div className="flex items-center gap-1.5 mb-1">
                         <Hash className="w-3 h-3 text-muted" />
                         <span className="text-[10px] font-medium text-muted">Chunk ID</span>
                       </div>
                       <span className="text-sm font-semibold">{chunk.id}</span>
                     </div>
-                    <div className="p-3 rounded-xl bg-gray-50/80">
+                    <div className="p-3 rounded-xl bg-surface-1/80">
                       <div className="flex items-center gap-1.5 mb-1">
                         <FileText className="w-3 h-3 text-muted" />
                         <span className="text-[10px] font-medium text-muted">Document Name</span>
                       </div>
                       <span className="text-sm font-semibold truncate block">{chunk.source}</span>
                     </div>
-                    <div className="p-3 rounded-xl bg-gray-50/80">
+                    <div className="p-3 rounded-xl bg-surface-1/80">
                       <div className="flex items-center gap-1.5 mb-1">
                         <BookOpen className="w-3 h-3 text-muted" />
                         <span className="text-[10px] font-medium text-muted">Page Number</span>
                       </div>
                       <span className="text-sm font-semibold">{chunk.pageNumber}</span>
                     </div>
-                    <div className="p-3 rounded-xl bg-gray-50/80">
+                    <div className="p-3 rounded-xl bg-surface-1/80">
                       <div className="flex items-center gap-1.5 mb-1">
                         <Layers className="w-3 h-3 text-muted" />
                         <span className="text-[10px] font-medium text-muted">Section Name</span>
@@ -92,21 +92,21 @@ export function ChunkViewer({ chunk, open, onClose }: ChunkViewerProps) {
                     <span className="text-sm font-semibold">Chunk Details</span>
                   </div>
                   <div className="grid grid-cols-3 gap-3 mb-3">
-                    <div className="p-3 rounded-xl bg-gray-50/80 text-center">
+                    <div className="p-3 rounded-xl bg-surface-1/80 text-center">
                       <span className="text-lg font-bold">{chunk.chunkSize}</span>
                       <p className="text-[10px] text-muted">Chunk Size</p>
                     </div>
-                    <div className="p-3 rounded-xl bg-gray-50/80 text-center">
+                    <div className="p-3 rounded-xl bg-surface-1/80 text-center">
                       <span className="text-lg font-bold">{chunk.tokenCount}</span>
                       <p className="text-[10px] text-muted">Token Count</p>
                     </div>
-                    <div className="p-3 rounded-xl bg-gray-50/80 text-center">
+                    <div className="p-3 rounded-xl bg-surface-1/80 text-center">
                       <span className="text-lg font-bold">{chunk.chunkOverlap}</span>
                       <p className="text-[10px] text-muted">Chunk Overlap</p>
                     </div>
                   </div>
 
-                  <div className="rounded-xl bg-gray-50/80 p-4">
+                  <div className="rounded-xl bg-surface-1/80 p-4">
                     <p className="text-xs text-muted leading-relaxed line-clamp-3">{chunk.text}</p>
                     {chunk.text.length > 150 && !expanded && (
                       <button onClick={() => setExpanded(true)} className="text-xs text-primary hover:underline mt-1">
@@ -158,22 +158,22 @@ export function ChunkViewer({ chunk, open, onClose }: ChunkViewerProps) {
                     <span className="text-sm font-semibold">Embedding Information</span>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="p-3 rounded-xl bg-gray-50/80">
+                    <div className="p-3 rounded-xl bg-surface-1/80">
                       <span className="text-[10px] font-medium text-muted block">Embedding Model</span>
                       <span className="text-sm font-semibold">{chunk.embeddingModel}</span>
                     </div>
-                    <div className="p-3 rounded-xl bg-gray-50/80">
+                    <div className="p-3 rounded-xl bg-surface-1/80">
                       <span className="text-[10px] font-medium text-muted block">Vector Dimensions</span>
                       <span className="text-sm font-semibold">{chunk.vectorDimensions}</span>
                     </div>
-                    <div className="p-3 rounded-xl bg-gray-50/80">
+                    <div className="p-3 rounded-xl bg-surface-1/80">
                       <div className="flex items-center gap-1.5 mb-1">
                         <Clock className="w-3 h-3 text-muted" />
                         <span className="text-[10px] font-medium text-muted">Created</span>
                       </div>
                       <span className="text-sm font-semibold">{chunk.createdTimestamp}</span>
                     </div>
-                    <div className="p-3 rounded-xl bg-gray-50/80">
+                    <div className="p-3 rounded-xl bg-surface-1/80">
                       <div className="flex items-center gap-1.5 mb-1">
                         {chunk.embeddingStatus === "completed" ? (
                           <CheckCircle2 className="w-3 h-3 text-emerald-500" />

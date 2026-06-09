@@ -45,7 +45,7 @@ export function AnswerQualityBadge({ quality }: { quality: AnswerQuality }) {
       <span className="font-medium">{quality.label}</span>
       <span className="group relative inline-flex items-center">
         <Icon className="h-3 w-3 cursor-help" />
-        <span className="absolute bottom-full left-1/2 mb-1.5 hidden w-max max-w-48 rounded-md bg-gray-900 px-2 py-1 text-[11px] text-white shadow-lg group-hover:block -translate-x-1/2 z-10 whitespace-normal break-words">
+        <span className="absolute bottom-full left-1/2 mb-1.5 hidden w-max max-w-48 rounded-md bg-popover px-2 py-1 text-[11px] text-white shadow-lg group-hover:block -translate-x-1/2 z-10 whitespace-normal break-words">
           {quality.explanation}
         </span>
       </span>

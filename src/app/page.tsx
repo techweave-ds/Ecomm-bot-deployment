@@ -62,10 +62,10 @@ function Hero() {
                 return (
                   <div key={s.label} className="flex flex-col items-center flex-1 relative">
                     {i > 0 && (
-                      <div className={`absolute top-5 -left-1/2 w-full h-0.5 hidden md:block transition-colors duration-500 ${isPast || isActive ? "bg-primary/30" : "bg-gray-200 dark:bg-gray-700"}`} />
+                      <div className={`absolute top-5 -left-1/2 w-full h-0.5 hidden md:block transition-colors duration-500 ${isPast || isActive ? "bg-primary/30" : "bg-border"}`} />
                     )}
                     <div
-                      className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mb-2.5 transition-all duration-500 relative z-10 ${isActive ? "bg-primary shadow-lg shadow-primary/25 scale-110" : isPast ? "bg-primary/10" : "bg-gray-100 dark:bg-gray-700"}`}
+                      className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mb-2.5 transition-all duration-500 relative z-10 ${isActive ? "bg-primary shadow-lg shadow-primary/25 scale-110" : isPast ? "bg-primary/10" : "bg-surface-2"}`}
                     >
                       <Icon className={`w-5 h-5 md:w-6 md:h-6 transition-colors duration-500 ${isActive ? "text-white" : isPast ? "text-primary" : "text-muted"}`} />
                     </div>
@@ -90,7 +90,7 @@ const problems = [
 
 function ProblemSection() {
   return (
-    <section className="py-20 md:py-28 bg-gray-50/60 dark:bg-gray-900/40">
+    <section className="py-20 md:py-28 bg-surface-1">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div className="text-center max-w-2xl mx-auto mb-14" {...fadeInUp}>
           <div className="section-label">Why Enterprise AI Fails</div>
@@ -154,9 +154,9 @@ function ComparisonSection() {
                   {[row.kb, row.chatbot, row.rag, row.kos].map((supported, j) => (
                     <td key={j} className={`text-center py-3 px-3 ${j === 3 ? "bg-primary-light/30" : ""}`}>
                       {supported ? (
-                        <CheckCircle2 className="w-4 h-4 mx-auto text-emerald-500" />
+                        <CheckCircle2 className="w-4 h-4 mx-auto text-success" />
                       ) : (
-                        <XCircle className="w-4 h-4 mx-auto text-red-300" />
+                        <XCircle className="w-4 h-4 mx-auto text-destructive/60" />
                       )}
                     </td>
                   ))}
@@ -178,7 +178,7 @@ const pillars = [
 
 function PillarsSection() {
   return (
-    <section className="py-20 md:py-28 bg-gray-50/60 dark:bg-gray-900/40">
+    <section className="py-20 md:py-28 bg-surface-1">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div className="text-center max-w-2xl mx-auto mb-14" {...fadeInUp}>
           <div className="section-label">The KnowledgeOS Platform</div>
@@ -228,7 +228,7 @@ function PreviewSection() {
         </motion.div>
         <div className="max-w-5xl mx-auto">
           <div className="rounded-2xl border border-border bg-card shadow-sm overflow-hidden mb-10">
-            <div className="flex items-center gap-1.5 px-4 py-3 bg-gray-50 dark:bg-gray-800 border-b border-border">
+            <div className="flex items-center gap-1.5 px-4 py-3 bg-surface-1 border-b border-border">
               {["#EF4444", "#F59E0B", "#10B981"].map((c) => (
                 <div key={c} className="w-3 h-3 rounded-full" style={{ backgroundColor: c }} />
               ))}
@@ -237,17 +237,17 @@ function PreviewSection() {
             <div className="p-6 md:p-10">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border border-border">
+                  <div className="p-4 rounded-xl bg-surface-1 border border-border">
                     <div className="flex items-center gap-3 mb-2">
                       <Upload className="w-4 h-4 text-primary" />
                       <span className="text-sm font-medium">knowledge_base.pdf</span>
                     </div>
-                    <div className="h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div className="h-1.5 bg-border rounded-full overflow-hidden">
                       <div className="h-full w-full bg-gradient-to-r from-primary to-accent rounded-full" />
                     </div>
                     <p className="text-xs text-muted mt-1">2.4 MB · 47 pages · 156 chunks indexed</p>
                   </div>
-                  <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border border-border">
+                  <div className="p-4 rounded-xl bg-surface-1 border border-border">
                     <div className="flex items-center gap-2 mb-2">
                       <MessageSquare className="w-4 h-4 text-primary" />
                       <span className="text-sm font-medium">Ask a question</span>
@@ -300,7 +300,7 @@ const howItWorks = [
 
 function HowItWorksSection() {
   return (
-    <section className="py-20 md:py-28 bg-gray-50/60 dark:bg-gray-900/40">
+    <section className="py-20 md:py-28 bg-surface-1">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div className="text-center max-w-2xl mx-auto mb-14" {...fadeInUp}>
           <div className="section-label">Simple 4-Step Process</div>
@@ -374,7 +374,7 @@ function OutcomesSection() {
 
 function CTASection() {
   return (
-    <section className="relative overflow-hidden bg-[#0f172a] text-white py-24 md:py-32">
+    <section className="cta-section py-24 md:py-32">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/10 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
         <motion.div {...fadeInUp}>
@@ -383,10 +383,10 @@ function CTASection() {
             Upload your documents and build a source-backed AI assistant in under 5 minutes.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="bg-white text-[#0f172a] hover:bg-white/90" asChild>
+            <Button size="lg" className="bg-white text-[#0f172a] hover:bg-white/90 shadow-md" asChild>
               <a href="/build-your-bot">Build Your Bot <ArrowRight className="w-4 h-4" /></a>
             </Button>
-            <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10" asChild>
+            <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10" asChild>
               <a href="/demo">See The Demo</a>
             </Button>
           </div>

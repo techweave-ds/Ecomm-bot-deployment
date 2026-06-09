@@ -19,7 +19,7 @@ export function getStatusColor(status: string): string {
     case "Indexed": return "text-emerald-600"
     case "Processing": return "text-amber-600"
     case "Failed": return "text-red-600"
-    case "Queued": return "text-gray-500"
+    case "Queued": return "text-muted"
     default: return "text-muted"
   }
 }
@@ -29,7 +29,7 @@ function HealthBar({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex items-center gap-2">
       <span className="text-xs text-muted w-16 shrink-0">{label}</span>
-      <div className="flex-1 h-2 rounded-full bg-gray-100">
+      <div className="flex-1 h-2 rounded-full bg-surface-2">
         <div className={cn("h-full rounded-full transition-all duration-700", color)} style={{ width: `${value}%` }} />
       </div>
       <span className={cn("text-xs font-medium w-8 text-right", getStatusColor(value >= 75 ? "Indexed" : value >= 50 ? "Processing" : "Failed"))}>{value}%</span>

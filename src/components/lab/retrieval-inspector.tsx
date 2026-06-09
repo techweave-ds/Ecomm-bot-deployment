@@ -102,7 +102,7 @@ function ChunkCard({ chunk, index }: { chunk: RetrievedChunk; index: number }) {
                   <span className="text-[10px] font-medium text-muted">Retrieval Score</span>
                   <span className="text-[11px] font-bold text-primary">{chunk.score.toFixed(3)}</span>
                 </div>
-                <div className="h-1.5 rounded-full bg-gray-100 overflow-hidden">
+                <div className="h-1.5 rounded-full bg-surface-2 overflow-hidden">
                   <motion.div
                     className="h-full rounded-full"
                     style={{
@@ -124,7 +124,7 @@ function ChunkCard({ chunk, index }: { chunk: RetrievedChunk; index: number }) {
               onClick={() => setExpanded(!expanded)}
               className="w-full text-left"
             >
-              <p className="text-xs text-[#0F172A] leading-relaxed">
+              <p className="text-xs text-foreground leading-relaxed">
                 {preview}
               </p>
               {chunk.text.length > PREVIEW_LIMIT && (
@@ -159,12 +159,12 @@ function ChunkCard({ chunk, index }: { chunk: RetrievedChunk; index: number }) {
                 >
                   <div className="mt-2 pt-2 border-t border-border space-y-2">
                     <div className="grid grid-cols-2 gap-2">
-                      <div className="p-2 rounded-lg bg-[#FAFBFC] text-center">
-                        <p className="text-xs font-bold text-[#0F172A]">{chunk.chunkSize}</p>
+                      <div className="p-2 rounded-lg bg-surface-1 text-center">
+                        <p className="text-xs font-bold text-foreground">{chunk.chunkSize}</p>
                         <p className="text-[10px] text-muted">Chunk Size</p>
                       </div>
-                      <div className="p-2 rounded-lg bg-[#FAFBFC] text-center">
-                        <p className="text-xs font-bold text-[#0F172A]">{chunk.tokenCount}</p>
+                      <div className="p-2 rounded-lg bg-surface-1 text-center">
+                        <p className="text-xs font-bold text-foreground">{chunk.tokenCount}</p>
                         <p className="text-[10px] text-muted">Tokens</p>
                       </div>
                     </div>
@@ -224,7 +224,7 @@ function GroundingIndicator({ percentage }: { percentage: number }) {
         </span>
       </div>
       <div>
-        <p className="text-xs font-semibold text-[#0F172A]">Grounding Score</p>
+        <p className="text-xs font-semibold text-foreground">Grounding Score</p>
         <p className="text-[10px] text-muted">
           {percentage >= 80 ? "Well grounded" : percentage >= 50 ? "Partially grounded" : "Poorly grounded"}
         </p>
@@ -292,7 +292,7 @@ function KeyFindings({ grounding }: { grounding: GroundingResult }) {
         <span className="text-xs font-semibold">Key Findings</span>
       </div>
       {findings.map((f) => (
-        <div key={f.label} className="flex items-center justify-between p-2 rounded-lg bg-[#FAFBFC]">
+        <div key={f.label} className="flex items-center justify-between p-2 rounded-lg bg-surface-1">
           <div className="flex items-center gap-2">
             {f.icon}
             <span className="text-[11px] text-muted">{f.label}</span>
@@ -330,7 +330,7 @@ function ConfidenceBreakdown({ grounding, quality }: { grounding: GroundingResul
         <BarChart3 className="w-3.5 h-3.5 text-primary" />
         <span className="text-xs font-semibold">Confidence Breakdown</span>
       </div>
-      <div className="h-2 rounded-full bg-gray-100 overflow-hidden flex">
+      <div className="h-2 rounded-full bg-surface-2 overflow-hidden flex">
         {items.map((item) =>
           item.value > 0 ? (
             <motion.div
@@ -349,11 +349,11 @@ function ConfidenceBreakdown({ grounding, quality }: { grounding: GroundingResul
           <div key={item.label} className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }} />
             <span className="text-[10px] text-muted">{item.label}</span>
-            <span className="text-[10px] font-semibold text-[#0F172A]">{item.value}%</span>
+            <span className="text-[10px] font-semibold text-foreground">{item.value}%</span>
           </div>
         ))}
       </div>
-      <div className="mt-2 p-2 rounded-lg bg-[#FAFBFC]">
+      <div className="mt-2 p-2 rounded-lg bg-surface-1">
         <p className="text-[10px] text-muted">{quality.explanation}</p>
       </div>
     </div>
@@ -403,11 +403,11 @@ export function RetrievalInspector({ chunks, query, grounding, quality }: Retrie
           </CardDescription>
         </CardHeader>
         <CardContent className="p-4 space-y-5">
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-[#FAFBFC] border border-border">
+          <div className="flex items-center gap-3 p-3 rounded-xl bg-surface-1 border border-border">
             {getQualityIcon(quality.label)}
             <div className="flex-1">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-[#0F172A]">{quality.label}</span>
+                <span className="text-xs font-semibold text-foreground">{quality.label}</span>
                 <Badge variant={getQualityColor(quality.label) as "success" | "warning" | "danger" | "outline"} className="text-[10px]">
                   {quality.label}
                 </Badge>

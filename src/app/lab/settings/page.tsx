@@ -218,7 +218,7 @@ export default function SettingsPage() {
                 { label: "Top-K", value: settings.topK },
                 { label: "Answer Style", value: settings.answerStyle },
               ].map(item => (
-                <div key={item.label} className="p-3 rounded-xl bg-gray-50 border border-border">
+                <div key={item.label} className="p-3 rounded-xl bg-surface-1 border border-border">
                   <p className="text-[10px] text-muted uppercase tracking-wide mb-1">{item.label}</p>
                   <p className="text-sm font-semibold truncate">{item.value}</p>
                 </div>

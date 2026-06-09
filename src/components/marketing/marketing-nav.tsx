@@ -42,7 +42,7 @@ export function MarketingNav() {
       "relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200",
       pathname === href
         ? "text-primary bg-primary-light"
-        : "text-muted hover:text-foreground hover:bg-gray-50 dark:hover:bg-gray-800",
+        : "text-muted hover:text-foreground hover:bg-secondary dark:hover:bg-secondary",
     )
 
   return (
@@ -50,10 +50,10 @@ export function MarketingNav() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-border shadow-sm"
+          ? "bg-background/90 backdrop-blur-md border-b border-border shadow-sm"
           : atTop
             ? "bg-transparent"
-            : "bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-transparent",
+            : "bg-background/80 backdrop-blur-sm border-b border-transparent",
       )}
     >
       <div className="container-page flex items-center justify-between h-16 md:h-18">
@@ -73,7 +73,7 @@ export function MarketingNav() {
         </nav>
 
         <div className="hidden md:flex items-center gap-2">
-          <button onClick={toggle} className="p-2 rounded-lg text-muted hover:text-foreground hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle theme">
+          <button onClick={toggle} className="p-2 rounded-lg text-muted hover:text-foreground hover:bg-secondary transition-colors" aria-label="Toggle theme">
             {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
           </button>
           <Button variant="primary" size="md" asChild>
@@ -86,7 +86,7 @@ export function MarketingNav() {
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
           aria-label={isOpen ? "Close menu" : "Open menu"}
         >
           {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -100,7 +100,7 @@ export function MarketingNav() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-white dark:bg-gray-900 border-b border-border overflow-hidden shadow-lg"
+            className="md:hidden bg-popover border-b border-border overflow-hidden shadow-lg"
           >
             <div className="container-page py-4 flex flex-col gap-1">
               {navLinks.map((link) => (
@@ -119,7 +119,7 @@ export function MarketingNav() {
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </Button>
-                <button onClick={toggle} className="flex items-center justify-center gap-2 w-full p-2.5 rounded-lg text-sm font-medium text-muted hover:text-foreground hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                <button onClick={toggle} className="flex items-center justify-center gap-2 w-full p-2.5 rounded-lg text-sm font-medium text-muted hover:text-foreground hover:bg-secondary transition-colors">
                   {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
                   {theme === "light" ? "Dark Mode" : "Light Mode"}
                 </button>
