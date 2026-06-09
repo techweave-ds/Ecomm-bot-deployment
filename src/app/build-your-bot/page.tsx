@@ -120,6 +120,7 @@ export default function BuildBotPage() {
   const [stats, setStats] = useState({ queries: 0, resolved: 0 })
   const [logs, setLogs] = useState<{ time: string; intent: string; query: string; response: string }[]>([])
   const [showHelp, setShowHelp] = useState(false)
+  const [showSteps, setShowSteps] = useState(true)
   const [firstVisit, setFirstVisit] = useState(true)
   const fileRef = useRef<HTMLInputElement>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -460,17 +461,61 @@ export default function BuildBotPage() {
       </button>
 
       <div className="container-page py-6 max-w-7xl">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-4">
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Build Your Own Assistant</h1>
             <p className="text-sm text-muted mt-1">Upload a PDF, configure Groq AI, and test your chatbot — all free, all in your browser</p>
           </div>
           <div className="flex items-center gap-2">
+            <button onClick={() => setShowSteps(!showSteps)}
+              className="w-8 h-8 rounded-lg border border-border hover:border-primary hover:bg-primary-light/30 transition-all flex items-center justify-center text-muted hover:text-primary"
+              aria-label="Toggle how-to steps">
+              <Info className="w-4 h-4" />
+            </button>
             <Badge variant={kbReady ? "success" : "outline"} className="gap-1.5 py-1">
               {kbReady ? <><CheckCircle className="w-3 h-3" /> Ready</> : <><AlertCircle className="w-3 h-3" /> Not ready</>}
             </Badge>
           </div>
         </div>
+
+        <AnimatePresence>
+          {showSteps && (
+            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}
+              className="mb-5 overflow-hidden">
+              <div className="p-4 rounded-xl bg-gradient-to-r from-blue-50 to-emerald-50 border border-blue-200">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-blue-800">
+                    <Info className="w-4 h-4" /> How to build your assistant
+                  </div>
+                  <button onClick={() => setShowSteps(false)} className="p-1 rounded hover:bg-white/50 transition-colors">
+                    <X className="w-3.5 h-3.5 text-blue-600" />
+                  </button>
+                </div>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                  {[
+                    { icon: Key, step: "1", title: "Add API Key", desc: "Paste your free Groq API key from console.groq.com" },
+                    { icon: FileUp, step: "2", title: "Upload PDF", desc: "Drop a PDF (max 5MB) or click to browse" },
+                    { icon: Zap, step: "3", title: "Process", desc: "Click Process Document to extract and index your knowledge" },
+                    { icon: MessageSquare, step: "4", title: "Ask Questions", desc: "Your knowledge base is ready — start chatting!" },
+                  ].map((item) => {
+                    const Icon = item.icon
+                    return (
+                      <div key={item.step} className="flex items-start gap-2.5 p-2.5 rounded-lg bg-white/70 border border-blue-100">
+                        <div className="w-7 h-7 rounded-lg bg-primary-light flex items-center justify-center shrink-0">
+                          <Icon className="w-3.5 h-3.5 text-primary" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-semibold text-foreground">{item.title}</div>
+                          <p className="text-[11px] text-muted leading-relaxed">{item.desc}</p>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <AnimatePresence>
           {error && (
