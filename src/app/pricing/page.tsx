@@ -44,7 +44,7 @@ export default function PricingPage() {
           </motion.p>
           <motion.div className="mt-8" {...fadeInUp}>
             <Button variant="secondary" size="lg" asChild>
-              <a href="/lab/builder">Build Your Bot <ArrowRight className="w-4 h-4" /></a>
+              <a href="/build-your-bot">Build Your Bot <ArrowRight className="w-4 h-4" /></a>
             </Button>
           </motion.div>
         </div>

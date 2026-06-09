@@ -52,7 +52,7 @@ function Hero() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <Button size="lg" asChild>
-              <a href="/lab/builder">Build Your Bot <ArrowRight className="w-4 h-4" /></a>
+              <a href="/build-your-bot">Build Your Bot <ArrowRight className="w-4 h-4" /></a>
             </Button>
             <Button variant="outline" size="lg" asChild>
               <a href="/demo">See How It Works</a>
@@ -162,7 +162,7 @@ function CTASection() {
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button size="lg" className="bg-white text-[#0f172a] hover:bg-white/90" asChild>
-            <a href="/lab/builder">Build Your Bot <ArrowRight className="w-4 h-4" /></a>
+            <a href="/build-your-bot">Build Your Bot <ArrowRight className="w-4 h-4" /></a>
           </Button>
           <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10" asChild>
             <a href="/demo">See The Demo</a>

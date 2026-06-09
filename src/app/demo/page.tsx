@@ -140,7 +140,7 @@ export default function DemoPage() {
           </motion.p>
           <motion.div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4" {...fadeInUp}>
             <Button variant="secondary" size="lg" asChild>
-              <Link href="/lab/builder">Build Your Own Bot <ArrowRight className="w-4 h-4" /></Link>
+              <Link href="/build-your-bot">Build Your Own Bot <ArrowRight className="w-4 h-4" /></Link>
             </Button>
             <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10" asChild>
               <Link href="#contact">Contact Us</Link>
