@@ -7,60 +7,9 @@ import {
   ArrowRight, CheckCircle2, XCircle, AlertTriangle, Search,
   BarChart3, Layers, Shield, FileText,
   Database, Zap, Activity, Target, Share2,
-  ChevronRight, Menu, X, ExternalLink, Sparkles,
+  ChevronRight, Sparkles,
 } from "lucide-react"
-
-// ─── Navigation ──────────────────────────────────────────────
-
-function Nav() {
-  const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener("scroll", onScroll)
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
-
-  return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-lg border-b border-border shadow-sm" : "bg-transparent"}`}>
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-            <Sparkles className="w-4 h-4 text-white" />
-          </div>
-          <span className="font-semibold text-sm tracking-tight">KnowledgeOS</span>
-        </div>
-        <nav className="hidden md:flex items-center gap-6">
-          {["Product", "Solutions", "Docs", "Pricing"].map((item) => (
-            <a key={item} href="#" className="text-sm text-muted hover:text-foreground transition-colors">{item}</a>
-          ))}
-          <Button variant="outline" size="sm">Sign In</Button>
-          <Button size="sm">Book a Demo</Button>
-        </nav>
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-2">
-          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
-      </div>
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-border overflow-hidden">
-            <div className="px-6 py-4 space-y-3">
-              {["Product", "Solutions", "Docs", "Pricing"].map((item) => (
-                <a key={item} href="#" className="block text-sm text-muted hover:text-foreground">{item}</a>
-              ))}
-              <div className="flex gap-3 pt-2">
-                <Button variant="outline" size="sm" className="flex-1">Sign In</Button>
-                <Button size="sm" className="flex-1">Demo</Button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
-  )
-}
+import { SiteShell } from "@/components/marketing/site-shell"
 
 // ─── Section Wrapper ─────────────────────────────────────────
 
@@ -184,13 +133,16 @@ function Hero() {
               KnowledgeOS helps enterprises <strong>measure, validate, and optimize</strong> the knowledge powering their AI systems.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-              <Button size="lg" className="text-base px-8 h-12">
-                Book a Demo
-                <ArrowRight className="w-4 h-4" />
+              <Button size="lg" className="text-base px-8 h-12" asChild>
+                <a href="/demo">
+                  See the Demo
+                  <ArrowRight className="w-4 h-4" />
+                </a>
               </Button>
-              <Button variant="outline" size="lg" className="text-base px-8 h-12">
-                Watch Product Tour
-                <ExternalLink className="w-4 h-4" />
+              <Button variant="outline" size="lg" className="text-base px-8 h-12" asChild>
+                <a href="/build-your-bot">
+                  Build Your Bot
+                </a>
               </Button>
             </div>
             <HeroPipeline />
@@ -981,72 +933,17 @@ function FinalCTA() {
           Understand your knowledge. Validate your AI. Build trust at enterprise scale.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button size="lg" className="text-base px-8 h-12 bg-white text-[#0f172a] hover:bg-white/90">
-            Book a Demo
-            <ArrowRight className="w-4 h-4" />
+          <Button size="lg" className="text-base px-8 h-12 bg-white text-[#0f172a] hover:bg-white/90" asChild>
+            <a href="/demo">
+              See the Demo
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </Button>
-          <Button variant="outline" size="lg" className="text-base px-8 h-12 border-white/20 text-white hover:bg-white/10">
-            Start Free Evaluation
+          <Button variant="outline" size="lg" className="text-base px-8 h-12 border-white/20 text-white hover:bg-white/10" asChild>
+            <a href="/build-your-bot">
+              Build Your Bot
+            </a>
           </Button>
-        </div>
-      </Container>
-    </Section>
-  )
-}
-
-// ─── Footer ──────────────────────────────────────────────────
-
-function FooterSection() {
-  const cols = [
-    {
-      title: "Product", links: ["Knowledge Health", "Retrieval Inspector", "Knowledge Graph", "Gap Detection", "AI Readiness"],
-    },
-    {
-      title: "Solutions", links: ["AI Teams", "Knowledge Managers", "Compliance", "Support Leaders", "Enterprise"],
-    },
-    {
-      title: "Resources", links: ["Documentation", "API Reference", "Integration Guide", "Case Studies", "Blog"],
-    },
-    {
-      title: "Company", links: ["About", "Careers", "Security", "Privacy Policy", "Terms of Service"],
-    },
-  ]
-
-  return (
-    <Section className="py-16 border-t border-border">
-      <Container>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-white" />
-              </div>
-              <span className="font-semibold text-sm">KnowledgeOS</span>
-            </div>
-            <p className="text-xs text-muted leading-relaxed max-w-xs">
-              The operating system for enterprise knowledge. Making AI explainable, auditable, and trustworthy.
-            </p>
-          </div>
-          {cols.map((col) => (
-            <div key={col.title}>
-              <h4 className="text-xs font-semibold text-muted uppercase tracking-wider mb-4">{col.title}</h4>
-              <ul className="space-y-2.5">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-sm text-muted hover:text-foreground transition-colors">{link}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted">&copy; 2026 TechWeave DS. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            {["Twitter", "GitHub", "LinkedIn", "YouTube"].map((s) => (
-              <a key={s} href="#" className="text-xs text-muted hover:text-foreground transition-colors">{s}</a>
-            ))}
-          </div>
         </div>
       </Container>
     </Section>
@@ -1057,9 +954,10 @@ function FooterSection() {
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-background">
-      <Nav />
-      <Hero />
+    <SiteShell>
+      <section className="pt-16">
+        <Hero />
+      </section>
       <ProblemSection />
       <CostSection />
       <SolutionSection />
@@ -1073,7 +971,6 @@ export default function HomePage() {
       <TestimonialsSection />
       <FAQSection />
       <FinalCTA />
-      <FooterSection />
-    </main>
+    </SiteShell>
   )
 }
