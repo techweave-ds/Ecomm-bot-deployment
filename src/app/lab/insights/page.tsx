@@ -22,20 +22,21 @@ import {
   AlertCircle,
 } from "lucide-react"
 
+interface TopicData { topic: string; count: number; percentage: number }
+interface DocData { name: string; retrievals: number; percentage: number }
+interface SourceData { source: string; utilization: number }
+interface InsightsData {
+  totalQuestions: number
+  retrievalQuality: number
+  coverageScore: number
+  popularTopics: TopicData[]
+  mostRetrievedDocuments: DocData[]
+  sourceUtilization: SourceData[]
+}
+
 export default function InsightsPage() {
   const [selectedEnv, setSelectedEnv] = useState("customer-support")
   const kb = knowledgeBases[selectedEnv as keyof typeof knowledgeBases]
-  interface TopicData { topic: string; count: number; percentage: number }
-  interface DocData { name: string; retrievals: number; percentage: number }
-  interface SourceData { source: string; utilization: number }
-  interface InsightsData {
-    totalQuestions: number
-    retrievalQuality: number
-    coverageScore: number
-    popularTopics: TopicData[]
-    mostRetrievedDocuments: DocData[]
-    sourceUtilization: SourceData[]
-  }
 
   const fallbackInsights: InsightsData = {
     totalQuestions: 12480,

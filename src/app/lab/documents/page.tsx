@@ -38,7 +38,6 @@ export default function DocumentsPage() {
   const [selectedDoc, setSelectedDoc] = useState<DetailDoc>(null)
   const [uploadModal, setUploadModal] = useState(false)
   const [uploadStep, setUploadStep] = useState(0)
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null)
   const [uploadedFileName, setUploadedFileName] = useState("")
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [activeTab, setActiveTab] = useState<"documents" | "relationships" | "chunks">("documents")
@@ -55,12 +54,10 @@ export default function DocumentsPage() {
   const handleUpload = () => {
     setUploadModal(true)
     setUploadStep(0)
-    setUploadedFile(null)
     setUploadedFileName("")
   }
 
   const startProcessing = (file: File) => {
-    setUploadedFile(file)
     setUploadedFileName(file.name)
     const stages = ["Uploading", "Parsing", "Chunking", "Embedding", "Indexing", "Ready"]
     for (let i = 0; i < stages.length; i++) {

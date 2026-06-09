@@ -34,8 +34,8 @@ function formatLatency(ms: number): string {
 }
 
 function confidenceColor(score: number): string {
-  if (score >= 0.9) return "text-emerald-600"
-  if (score >= 0.7) return "text-amber-600"
+  if (score >= 90) return "text-emerald-600"
+  if (score >= 70) return "text-amber-600"
   return "text-red-600"
 }
 
@@ -97,7 +97,7 @@ export function QueryHistoryPanel({ queries, onReRun, onExport }: QueryHistoryPa
                         {formatLatency(q.latencyMs)}
                       </span>
                       <span className={`font-medium ${confidenceColor(q.confidence)}`}>
-                        {Math.round(q.confidence * 100)}%
+                        {Math.round(q.confidence)}%
                       </span>
                     </div>
                   </div>

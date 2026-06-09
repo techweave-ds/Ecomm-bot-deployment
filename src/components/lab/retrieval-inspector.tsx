@@ -37,7 +37,7 @@ const PREVIEW_LIMIT = 300
 
 function ChunkCard({ chunk, index }: { chunk: RetrievedChunk; index: number }) {
   const [expanded, setExpanded] = useState(false)
-  const [copied, setCopied] = useState(false)
+  const [copied, setCopied] = useState<"chunk" | "source" | "meta" | null>(null)
 
   const preview = chunk.text.length > PREVIEW_LIMIT && !expanded
     ? chunk.text.slice(0, PREVIEW_LIMIT) + "..."
@@ -45,8 +45,22 @@ function ChunkCard({ chunk, index }: { chunk: RetrievedChunk; index: number }) {
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(chunk.text)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    setCopied("chunk")
+    setTimeout(() => setCopied(null), 2000)
+  }
+
+  const handleViewFullChunk = () => setExpanded(true)
+  const handleViewSourceDoc = () => {
+    const info = `${chunk.source} - Page ${chunk.metadata.pageNumber}`
+    navigator.clipboard.writeText(info)
+    setCopied("source")
+    setTimeout(() => setCopied(null), 2000)
+  }
+  const handleInspectMetadata = () => {
+    const meta = JSON.stringify(chunk.metadata, null, 2)
+    navigator.clipboard.writeText(meta)
+    setCopied("meta")
+    setTimeout(() => setCopied(null), 2000)
   }
 
   return (
@@ -155,25 +169,25 @@ function ChunkCard({ chunk, index }: { chunk: RetrievedChunk; index: number }) {
                       </div>
                     </div>
                     <div className="flex flex-wrap gap-1.5">
-                      <Button variant="outline" size="sm" className="text-[10px] h-7">
+                      <Button variant="outline" size="sm" className="text-[10px] h-7" onClick={handleViewFullChunk}>
                         <ExternalLink className="w-3 h-3" />
                         View Full Chunk
                       </Button>
-                      <Button variant="outline" size="sm" className="text-[10px] h-7">
+                      <Button variant="outline" size="sm" className="text-[10px] h-7" onClick={handleViewSourceDoc}>
                         <ArrowUpRight className="w-3 h-3" />
-                        View Source Document
+                        {copied === "source" ? "Copied!" : "View Source"}
                       </Button>
                       <Button variant="outline" size="sm" className="text-[10px] h-7" onClick={handleCopy}>
-                        {copied ? (
+                        {copied === "chunk" ? (
                           <CheckCircle2 className="w-3 h-3 text-accent" />
                         ) : (
                           <Copy className="w-3 h-3" />
                         )}
-                        {copied ? "Copied" : "Copy Chunk"}
+                        {copied === "chunk" ? "Copied!" : "Copy Chunk"}
                       </Button>
-                      <Button variant="outline" size="sm" className="text-[10px] h-7">
+                      <Button variant="outline" size="sm" className="text-[10px] h-7" onClick={handleInspectMetadata}>
                         <Info className="w-3 h-3" />
-                        Inspect Metadata
+                        {copied === "meta" ? "Copied!" : "Metadata"}
                       </Button>
                     </div>
                   </div>

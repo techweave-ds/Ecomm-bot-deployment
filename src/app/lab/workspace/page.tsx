@@ -127,7 +127,7 @@ function AnimatedJourney({ data }: { data: typeof sampleQueryTrace }) {
   )
 }
 
-function AnswerText({ text, citations, onCitationClick }: { text: string; citations: typeof sampleCitations; onCitationClick: (id: string) => void }) {
+function AnswerText({ text, citations, onCitationClick }: { text: string; citations: typeof sampleCitations; onCitationClick: () => void }) {
   const parts = text.split(/(\[\d+\])/g)
   return (
     <p className="text-base leading-relaxed">
@@ -139,7 +139,7 @@ function AnswerText({ text, citations, onCitationClick }: { text: string; citati
           return (
             <button
               key={i}
-              onClick={() => citation && onCitationClick(citation.id)}
+              onClick={() => onCitationClick()}
               className="inline-flex items-center px-1.5 py-0.5 rounded bg-primary/10 text-primary text-xs font-medium hover:bg-primary/20 transition-colors cursor-pointer mx-0.5"
               title={citation ? `View citation: ${citation.documentName}` : "View citation"}
             >
@@ -160,7 +160,6 @@ export default function WorkspacePage() {
   const [activeKb, setActiveKb] = useState("customer-support")
   const [devMode, setDevMode] = useState(false)
   const [citationOpen, setCitationOpen] = useState(false)
-  const [_activeCitationId, setActiveCitationId] = useState<string | null>(null)
   const [chunkViewerOpen, setChunkViewerOpen] = useState(false)
   const [selectedChunk, setSelectedChunk] = useState<ChunkDetail | null>(null)
   const [showAnalytics, setShowAnalytics] = useState(false)
@@ -237,8 +236,7 @@ Question: ${q}` : q
     a.click()
   }, [sessionHistory])
 
-  const handleCitationClick = useCallback((id: string) => {
-    setActiveCitationId(id)
+  const handleCitationClick = useCallback(() => {
     setCitationOpen(true)
   }, [])
 

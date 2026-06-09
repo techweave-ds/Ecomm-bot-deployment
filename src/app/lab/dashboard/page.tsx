@@ -216,13 +216,13 @@ export default function DashboardPage() {
                 <div key={chunk.id}>
                   <div className="flex items-center justify-between text-sm mb-1">
                     <span>
-                      <span className="font-medium">Chunk {chunk.id}</span>
+                      <span className="font-medium">{chunk.id}</span>
                       <span className="text-muted ml-2 text-xs">{chunk.document}</span>
                     </span>
                     <span className="text-muted">{chunk.retrievals.toLocaleString()}</span>
                   </div>
                   <div className="w-full h-1.5 rounded-full bg-gray-100">
-                    <motion.div initial={{ width: 0 }} animate={{ width: `${(chunk.retrievals / 324) * 100}%` }} className="h-full rounded-full bg-gradient-to-r from-accent to-primary" />
+                    <motion.div initial={{ width: 0 }} animate={{ width: `${(chunk.retrievals / Math.max(...dashboardData.mostReferencedChunks.map(c => c.retrievals))) * 100}%` }} className="h-full rounded-full bg-gradient-to-r from-accent to-primary" />
                   </div>
                 </div>
               ))}

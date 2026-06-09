@@ -10,7 +10,7 @@ import {
   Upload, FileText, X, Send, Bot, User, Loader2,
   CheckCircle, Key, Eye, EyeOff, Zap, MessageSquare,
   Trash2, Download, ChevronRight, Info, AlertCircle,
-  Hash, BarChart3, Settings2, RotateCcw,
+  Hash, BarChart3,
 } from "lucide-react"
 import Link from "next/link"
 

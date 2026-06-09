@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
@@ -31,18 +31,36 @@ type Settings = typeof DEFAULT_SETTINGS
 
 const STORAGE_KEY = "techweave_settings"
 
+function loadSavedSettings(): Settings {
+  if (typeof window === "undefined") return DEFAULT_SETTINGS
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY)
+    if (stored) {
+      return { ...DEFAULT_SETTINGS, ...JSON.parse(stored) }
+    }
+  } catch { /* ignore */ }
+  return DEFAULT_SETTINGS
+}
+function Field({ label, stKey, options, value, onChange }: { label: string; stKey: keyof Settings; options: string[]; value: string; onChange: (key: keyof Settings, value: string) => void }) {
+  return (
+    <div>
+      <label className="text-sm font-medium mb-1.5 block">{label}</label>
+      <select
+        value={value}
+        onChange={e => onChange(stKey, e.target.value)}
+        className="w-full px-3 py-2 rounded-xl border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none cursor-pointer"
+      >
+        {options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+      </select>
+    </div>
+  )
+}
+
 export default function SettingsPage() {
-  const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS)
+  const [settings, setSettings] = useState<Settings>(loadSavedSettings)
   const [saved, setSaved] = useState(false)
   const [resetConfirm, setResetConfirm] = useState(false)
   const [dirty, setDirty] = useState(false)
-
-  useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY)
-    if (stored) {
-      try { setSettings({ ...DEFAULT_SETTINGS, ...JSON.parse(stored) }) } catch { /* ignore */ }
-    }
-  }, [])
 
   const update = (key: keyof Settings, value: string) => {
     setSettings(prev => ({ ...prev, [key]: value }))
@@ -69,19 +87,6 @@ export default function SettingsPage() {
     setDirty(false)
     setSaved(false)
   }
-
-  const Field = ({ label, stKey, options }: { label: string; stKey: keyof Settings; options: string[] }) => (
-    <div>
-      <label className="text-sm font-medium mb-1.5 block">{label}</label>
-      <select
-        value={settings[stKey]}
-        onChange={e => update(stKey, e.target.value)}
-        className="w-full px-3 py-2 rounded-xl border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none cursor-pointer"
-      >
-        {options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-      </select>
-    </div>
-  )
 
   return (
     <div className="container-page py-8">
@@ -122,10 +127,10 @@ export default function SettingsPage() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Field label="Model" stKey="embeddingModel" options={["BGE Large", "OpenAI text-embedding-3", "Cohere embed-english", "sentence-transformers/all-MiniLM-L6-v2"]} />
-              <Field label="Dimensions" stKey="dimensions" options={["384", "768", "1024", "1536", "3072"]} />
-              <Field label="Chunk Size" stKey="chunkSize" options={["128 tokens", "256 tokens", "512 tokens", "1024 tokens"]} />
-              <Field label="Chunk Overlap" stKey="chunkOverlap" options={["0 tokens", "16 tokens", "32 tokens", "64 tokens", "128 tokens"]} />
+              <Field label="Model" stKey="embeddingModel" value={settings.embeddingModel} onChange={update} options={["BGE Large", "OpenAI text-embedding-3", "Cohere embed-english", "sentence-transformers/all-MiniLM-L6-v2"]} />
+              <Field label="Dimensions" stKey="dimensions" value={settings.dimensions} onChange={update} options={["384", "768", "1024", "1536", "3072"]} />
+              <Field label="Chunk Size" stKey="chunkSize" value={settings.chunkSize} onChange={update} options={["128 tokens", "256 tokens", "512 tokens", "1024 tokens"]} />
+              <Field label="Chunk Overlap" stKey="chunkOverlap" value={settings.chunkOverlap} onChange={update} options={["0 tokens", "16 tokens", "32 tokens", "64 tokens", "128 tokens"]} />
             </div>
           </CardContent>
         </Card>
@@ -145,10 +150,10 @@ export default function SettingsPage() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Field label="Database" stKey="vectorDb" options={["Qdrant", "Pinecone", "Weaviate", "Chroma", "pgvector"]} />
-              <Field label="Distance Metric" stKey="distanceMetric" options={["Cosine", "Euclidean", "Dot Product"]} />
-              <Field label="Top-K Retrieval" stKey="topK" options={["3", "5", "10", "20"]} />
-              <Field label="Similarity Threshold" stKey="similarityThreshold" options={["0.5", "0.6", "0.75", "0.85", "0.9"]} />
+              <Field label="Database" stKey="vectorDb" value={settings.vectorDb} onChange={update} options={["Qdrant", "Pinecone", "Weaviate", "Chroma", "pgvector"]} />
+              <Field label="Distance Metric" stKey="distanceMetric" value={settings.distanceMetric} onChange={update} options={["Cosine", "Euclidean", "Dot Product"]} />
+              <Field label="Top-K Retrieval" stKey="topK" value={settings.topK} onChange={update} options={["3", "5", "10", "20"]} />
+              <Field label="Similarity Threshold" stKey="similarityThreshold" value={settings.similarityThreshold} onChange={update} options={["0.5", "0.6", "0.75", "0.85", "0.9"]} />
             </div>
           </CardContent>
         </Card>
@@ -168,10 +173,10 @@ export default function SettingsPage() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Field label="Model" stKey="llmModel" options={["llama-3.1-8b-instant", "llama-3.3-70b-versatile", "gemma2-9b-it", "DeepSeek v3", "Claude Sonnet 4", "GPT-4o"]} />
-              <Field label="Temperature" stKey="temperature" options={["0.0", "0.1", "0.3", "0.5", "0.7", "1.0"]} />
-              <Field label="Max Tokens" stKey="maxTokens" options={["256", "512", "1024", "2048", "4096"]} />
-              <Field label="Top-P" stKey="topP" options={["0.8", "0.9", "0.95", "1.0"]} />
+              <Field label="Model" stKey="llmModel" value={settings.llmModel} onChange={update} options={["llama-3.1-8b-instant", "llama-3.3-70b-versatile", "gemma2-9b-it", "DeepSeek v3", "Claude Sonnet 4", "GPT-4o"]} />
+              <Field label="Temperature" stKey="temperature" value={settings.temperature} onChange={update} options={["0.0", "0.1", "0.3", "0.5", "0.7", "1.0"]} />
+              <Field label="Max Tokens" stKey="maxTokens" value={settings.maxTokens} onChange={update} options={["256", "512", "1024", "2048", "4096"]} />
+              <Field label="Top-P" stKey="topP" value={settings.topP} onChange={update} options={["0.8", "0.9", "0.95", "1.0"]} />
             </div>
           </CardContent>
         </Card>
@@ -191,10 +196,10 @@ export default function SettingsPage() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Field label="Language" stKey="language" options={["English", "Spanish", "French", "German", "Japanese", "Hindi"]} />
-              <Field label="Confidence Threshold" stKey="confidenceThreshold" options={["50%", "60%", "70%", "80%", "90%"]} />
-              <Field label="Answer Style" stKey="answerStyle" options={["Concise", "Balanced", "Detailed"]} />
-              <Field label="Max Retrieval Documents" stKey="maxRetrievalDocs" options={["1", "3", "5", "10"]} />
+              <Field label="Language" stKey="language" value={settings.language} onChange={update} options={["English", "Spanish", "French", "German", "Japanese", "Hindi"]} />
+              <Field label="Confidence Threshold" stKey="confidenceThreshold" value={settings.confidenceThreshold} onChange={update} options={["50%", "60%", "70%", "80%", "90%"]} />
+              <Field label="Answer Style" stKey="answerStyle" value={settings.answerStyle} onChange={update} options={["Concise", "Balanced", "Detailed"]} />
+              <Field label="Max Retrieval Documents" stKey="maxRetrievalDocs" value={settings.maxRetrievalDocs} onChange={update} options={["1", "3", "5", "10"]} />
             </div>
           </CardContent>
         </Card>
