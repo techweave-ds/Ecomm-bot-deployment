@@ -58,7 +58,7 @@ export function Footer() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10" asChild>
+              <Button size="lg" className="border border-white/30 bg-transparent text-white hover:bg-white/10" asChild>
                 <Link href="/demo">
                   <Play className="w-4 h-4" />
                   Watch Demo
