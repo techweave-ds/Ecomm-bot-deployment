@@ -372,30 +372,6 @@ function OutcomesSection() {
   )
 }
 
-function CTASection() {
-  return (
-    <section className="cta-section py-24 md:py-32">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/10 pointer-events-none" />
-      <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-        <motion.div {...fadeInUp}>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Stop Guessing What Your AI Knows</h2>
-          <p className="text-lg md:text-xl text-white/60 max-w-xl mx-auto mb-8 leading-relaxed">
-            Upload your documents and build a source-backed AI assistant in under 5 minutes.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="bg-white text-[#0f172a] hover:bg-white/90 shadow-md" asChild>
-              <a href="/build-your-bot">Build Your Bot <ArrowRight className="w-4 h-4" /></a>
-            </Button>
-            <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10" asChild>
-              <a href="/demo">See The Demo</a>
-            </Button>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
 export default function HomePage() {
   return (
     <SiteShell>
@@ -406,7 +382,6 @@ export default function HomePage() {
       <PreviewSection />
       <HowItWorksSection />
       <OutcomesSection />
-      <CTASection />
     </SiteShell>
   )
 }

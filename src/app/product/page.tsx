@@ -190,7 +190,7 @@ export default function ProductPage() {
             <Button size="lg" className="bg-white text-[#0f172a] hover:bg-white/90 shadow-md" asChild>
               <Link href="/build-your-bot">Build Your Bot <ArrowRight className="w-4 h-4" /></Link>
             </Button>
-            <Button variant="outline" size="lg" className="cta-section-outline" asChild>
+            <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10" asChild>
               <Link href="/demo">Watch Demo</Link>
             </Button>
           </motion.div>
